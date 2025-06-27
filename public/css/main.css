@@ -2528,7 +2528,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /*-------- Start Banner Area ------------*/
 .banner-area {
-  background: url(../img/hero-bg.jpg) center;
+  background: url('/img/hero-background.jpg') center;
   background-size: cover;
 }
 
@@ -2656,6 +2656,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /*-------- End Banner Area ------------*/
+
 /*-------- start Popular-destination Area ------------*/
 .single-destination {
   -webkit-transition: all 0.3s ease 0s;

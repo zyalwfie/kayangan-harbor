@@ -40,8 +40,8 @@
                         <span class="lnr lnr-home"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>Binghamton, New York</h5>
-                        <p>4343 Hinkle Deegan Lake Road</p>
+                        <h5>Pringgabaya, Lombok Timur, NTB</h5>
+                        <p>Jl. Kayangan Port, 83654</p>
                     </div>
                 </div>
                 <div class="single-contact-address d-flex flex-row">
@@ -49,8 +49,8 @@
                         <span class="lnr lnr-phone-handset"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>00 (958) 9865 562</h5>
-                        <p>Mon to Fri 9am to 6 pm</p>
+                        <h5>+62 87765058843</h5>
+                        <p>Senin - Jum'at | 09.00 - 18.00</p>
                     </div>
                 </div>
                 <div class="single-contact-address d-flex flex-row">
@@ -58,8 +58,8 @@
                         <span class="lnr lnr-envelope"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>support@colorlib.com</h5>
-                        <p>Send us your query anytime!</p>
+                        <h5>zaerin@gmail.com</h5>
+                        <p>Beri tahu keluhan anda!</p>
                     </div>
                 </div>
             </div>
@@ -73,28 +73,28 @@
                         <div class="col-lg-6 form-group">
                             <input
                                 name="name"
-                                placeholder="Enter your name"
+                                placeholder="Masukkan namamu"
                                 onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Enter your name'"
+                                onblur="this.placeholder = 'Masukkan namamu'"
                                 class="common-input mb-20 form-control"
                                 required=""
                                 type="text" />
 
                             <input
                                 name="email"
-                                placeholder="Enter email address"
+                                placeholder="Masukkan surelmu"
                                 pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
                                 onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Enter email address'"
+                                onblur="this.placeholder = 'Masukkan surelmu'"
                                 class="common-input mb-20 form-control"
                                 required=""
                                 type="email" />
 
                             <input
                                 name="subject"
-                                placeholder="Enter subject"
+                                placeholder="Dalam subjek apa"
                                 onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Enter subject'"
+                                onblur="this.placeholder = 'Dalam subjek apa'"
                                 class="common-input mb-20 form-control"
                                 required=""
                                 type="text" />
@@ -103,9 +103,9 @@
                             <textarea
                                 class="common-textarea form-control"
                                 name="message"
-                                placeholder="Enter Messege"
+                                placeholder="Apa keluhanmu"
                                 onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Enter Messege'"
+                                onblur="this.placeholder = 'Apa keluhanmu'"
                                 required=""></textarea>
                         </div>
                         <div class="col-lg-12">
@@ -115,7 +115,7 @@
                             <button
                                 class="genric-btn primary"
                                 style="float: right">
-                                Send Message
+                                Kirim pesan
                             </button>
                         </div>
                     </div>

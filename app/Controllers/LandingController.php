@@ -24,22 +24,13 @@ class LandingController extends BaseController
         return view('landing/about', $data);
     }
 
-    public function hotels()
+    public function tickets()
     {
         $data = [
-            'pageTitle' => 'Kayangan Harbor | Hotel Kami'
+            'pageTitle' => 'Kayangan Harbor | Tiket'
         ];
         
-        return view('landing/hotels', $data);
-    }
-
-    public function packages()
-    {
-        $data = [
-            'pageTitle' => 'Kayangan Harbor | Paket Kami'
-        ];
-        
-        return view('landing/packages', $data);
+        return view('landing/tickets', $data);
     }
 
     public function contact()

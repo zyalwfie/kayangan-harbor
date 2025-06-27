@@ -4,16 +4,16 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-6 col-6 header-top-left">
                     <ul>
-                        <li><a href="#">Visit Us</a></li>
-                        <li><a href="#">Buy Tickets</a></li>
+                        <li><a href="https://ferizy.com/">Kunjungi Kami</a></li>
+                        <li><a href="<?= route_to('landing.tickets') ?>">Beli Tiket</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                     <div class="header-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
                     </div>
                 </div>
             </div>
@@ -26,11 +26,10 @@
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="<?= base_url() ?>" class="<?= url_is('/') ? 'nav-active' : '' ?>">Home</a></li>
-                    <li><a href="<?= route_to('landing.about') ?>" class="<?= url_is('about') ? 'nav-active' : '' ?>">About</a></li>
-                    <li><a href="<?= route_to('landing.packages') ?>" class="<?= url_is('packages') ? 'nav-active' : '' ?>">Packages</a></li>
-                    <li><a href="<?= route_to('landing.hotels') ?>" class="<?= url_is('hotels') ? 'nav-active' : '' ?>">Hotels</a></li>
-                    <li><a href="<?= route_to('landing.contact') ?>" class="<?= url_is('contact') ? 'nav-active' : '' ?>">Contact</a></li>
+                    <li><a href="<?= base_url() ?>" class="<?= url_is('/') ? 'nav-active' : '' ?>">Beranda</a></li>
+                    <li><a href="<?= route_to('landing.about') ?>" class="<?= url_is('about') ? 'nav-active' : '' ?>">Tentang</a></li>
+                    <li><a href="<?= route_to('landing.tickets') ?>" class="<?= url_is('tickets') ? 'nav-active' : '' ?>">Tiket</a></li>
+                    <li><a href="<?= route_to('landing.contact') ?>" class="<?= url_is('contact') ? 'nav-active' : '' ?>">Kontak</a></li>
                 </ul>
             </nav>
         </div>
