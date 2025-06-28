@@ -101,6 +101,26 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-end">
+                <div class="form-group m-0 w-100">
+                    <form method="get" class="d-flex align-items-end gap-2">
+                        <div class="mr-2">
+                            <label for="search">Cari Tiket</label>
+                            <input type="text" class="form-control" id="search" name="search" placeholder="Cari di sini">
+                        </div>
+                        <button class="btn btn-warning"><i class="bi bi-search"></i></button>
+                    </form>
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-caret-left"></i></a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-caret-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
             <div class="col-lg-4">
                 <div class="single-destinations">
                     <div class="thumb">
@@ -357,4 +377,26 @@
         </div>
     </div>
 </div>
+<?= $this->endSection(); ?>
+
+<?= $this->section('head_css'); ?>
+<style>
+    .page-link {
+        color: #f8b600 !important;
+    }
+
+    .page-link:hover {
+        color: #ffce3a !important;
+    }
+
+    .page-link:focus {
+        box-shadow: 0 0 0 .2rem rgba(248, 182, 0, .25) !important;
+    }
+
+    .page-item.active .page-link {
+        background-color: #f8b600 !important;
+        border-color: #f8b600 !important;
+        color: #fff !important;
+    }
+</style>
 <?= $this->endSection(); ?>

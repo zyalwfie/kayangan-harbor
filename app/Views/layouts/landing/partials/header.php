@@ -30,6 +30,15 @@
                     <li><a href="<?= route_to('landing.about') ?>" class="<?= url_is('about') ? 'nav-active' : '' ?>">Tentang</a></li>
                     <li><a href="<?= route_to('landing.tickets') ?>" class="<?= url_is('tickets') ? 'nav-active' : '' ?>">Tiket</a></li>
                     <li><a href="<?= route_to('landing.contact') ?>" class="<?= url_is('contact') ? 'nav-active' : '' ?>">Kontak</a></li>
+                    <?php if (logged_in()) : ?>
+                        <?php if (in_groups('admin')) : ?>
+                            <li><a href="<?= route_to('dashboard.admin.index') ?>">Dasbor</a></li>
+                        <?php endif; ?>
+                        <li><a href="<?= route_to('dashboard.user.index') ?>">Dasbor</a></li>
+                        <li><a href="<?= url_to('logout') ?>">Keluar</a></li>
+                    <?php else : ?>
+                        <li><a href="<?= url_to('login') ?>" class="btn btn-outline-warning px-3 py-1 text-white">Masuk</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
