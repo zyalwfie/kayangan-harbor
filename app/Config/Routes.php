@@ -9,3 +9,8 @@ $routes->get('/', 'LandingController', ['as' => 'landing.index']);
 $routes->get('/about', 'LandingController::about', ['as' => 'landing.about']);
 $routes->get('/tickets', 'LandingController::tickets', ['as' => 'landing.tickets']);
 $routes->get('/contact', 'LandingController::contact', ['as' => 'landing.contact']);
+
+$routes->get('/dashboard', 'UserController');
+
+$routes->get('/login', 'AuthController::login');
+$routes->get('/register', 'AuthController::register');
