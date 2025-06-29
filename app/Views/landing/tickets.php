@@ -105,8 +105,7 @@
                 <div class="form-group m-0 w-100">
                     <form method="get" class="d-flex align-items-end gap-2">
                         <div class="mr-2">
-                            <label for="search">Cari Tiket</label>
-                            <input type="text" class="form-control" id="search" name="search" placeholder="Cari di sini">
+                            <input type="text" class="form-control" id="search" name="search" placeholder="Cari tiket di sini">
                         </div>
                         <button class="btn btn-warning"><i class="bi bi-search"></i></button>
                     </form>
@@ -121,216 +120,52 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-4">
-                <div class="single-destinations">
-                    <div class="thumb">
-                        <img src="d1.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <h4>Holiday Sea beach Blue Ocean</h4>
-                        <p>
-                            United staes of America
-                        </p>
-                        <ul class="package-list">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Duration</span>
-                                <span>06 days and 7 nights</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Date</span>
-                                <span>18.04.2018</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Airport</span>
-                                <span>Changi</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Extras</span>
-                                <span>All Inclusive</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Price per person</span>
-                                <a href="#" class="price-btn">$250</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-destinations">
-                    <div class="thumb">
-                        <img src="img/packages/d2.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <h4>Holiday Sea beach Blue Ocean</h4>
-                        <p>
-                            United staes of America
-                        </p>
-                        <ul class="package-list">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Duration</span>
-                                <span>06 days and 7 nights</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Date</span>
-                                <span>18.04.2018</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Airport</span>
-                                <span>Changi</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Extras</span>
-                                <span>All Inclusive</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Price per person</span>
-                                <a href="#" class="price-btn">$250</a>
-                            </li>
-                        </ul>
+            <?php foreach ($tickets as $ticket) : ?>
+                <div class="col-lg-4">
+                    <div class="single-destinations">
+                        <div class="thumb">
+                            <img src="img/ticket/<?= $ticket->gambar ?>" alt="<?= $ticket->gambar ?>">
+                        </div>
+                        <div class="details">
+                            <h4>Tujuan <?= $ticket->pelabuhan_tujuan ?></h4>
+                            <p>Jenis pengguna jasa, <b><?= $ticket->jenisPenggunaJasa ?></b></p>
+                            <button type="button" class="btn btn-secondary" disabled data-toggle="tooltip" data-placement="right" title="<?= $ticket->golonganKendaraan ? $ticket->deskripsiGolonganKendaraan : 'Tidak ada golongan kendaraan' ?>"><b><?= $ticket->golonganKendaraan ? $ticket->golonganKendaraan : 'Golongan 0' ?></b></button>
+                            <ul class="package-list">
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <span>Durasi</span>
+                                    <span>± 1 jam 30 menit</span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <span>Tanggal Tersedia</span>
+                                    <?php
+                                    $formatter = new \IntlDateFormatter('id_ID', \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, null, null, "MMMM d, yyyy");
+                                    ?>
+                                    <span><?= $formatter->format(new DateTime($ticket->jadwal_tiket_tersedia)); ?></span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <span>Tanggal Habis</span>
+                                    <span><?= $formatter->format(new DateTime($ticket->jadwal_tiket_tersedia)); ?></span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <span>Tersisa</span>
+                                    <span><?= $ticket->stok ?></span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <span>Harga Perorang</span>
+                                    <span class="price-btn">Rp<?= number_format($ticket->harga, '0', '.', ',') ?></span>
+                                </li>
+                                <li>
+                                    <?= form_open(route_to('landing.order', ['class' => 'w-100'])) ?>
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="ticket_id" value="<?= $ticket->id ?>">
+                                    <button class="btn btn-outline-warning w-100" type="submit">Pesan Sekarang</button>
+                                    <?= form_close() ?>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-destinations">
-                    <div class="thumb">
-                        <img src="img/packages/d3.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <h4>Holiday Sea beach Blue Ocean</h4>
-                        <p>
-                            United staes of America
-                        </p>
-                        <ul class="package-list">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Duration</span>
-                                <span>06 days and 7 nights</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Date</span>
-                                <span>18.04.2018</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Airport</span>
-                                <span>Changi</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Extras</span>
-                                <span>All Inclusive</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Price per person</span>
-                                <a href="#" class="price-btn">$250</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-destinations">
-                    <div class="thumb">
-                        <img src="img/packages/d4.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <h4>Holiday Sea beach Blue Ocean</h4>
-                        <p>
-                            United staes of America
-                        </p>
-                        <ul class="package-list">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Duration</span>
-                                <span>06 days and 7 nights</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Date</span>
-                                <span>18.04.2018</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Airport</span>
-                                <span>Changi</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Extras</span>
-                                <span>All Inclusive</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Price per person</span>
-                                <a href="#" class="price-btn">$250</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-destinations">
-                    <div class="thumb">
-                        <img src="img/packages/d5.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <h4>Holiday Sea beach Blue Ocean</h4>
-                        <p>
-                            United staes of America
-                        </p>
-                        <ul class="package-list">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Duration</span>
-                                <span>06 days and 7 nights</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Date</span>
-                                <span>18.04.2018</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Airport</span>
-                                <span>Changi</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Extras</span>
-                                <span>All Inclusive</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Price per person</span>
-                                <a href="#" class="price-btn">$250</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-destinations">
-                    <div class="thumb">
-                        <img src="img/packages/d6.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <h4>Holiday Sea beach Blue Ocean</h4>
-                        <p>
-                            United staes of America
-                        </p>
-                        <ul class="package-list">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Duration</span>
-                                <span>06 days and 7 nights</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Date</span>
-                                <span>18.04.2018</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Airport</span>
-                                <span>Changi</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Extras</span>
-                                <span>All Inclusive</span>
-                            </li>
-                            <li class="d-flex justify-content-between align-items-center">
-                                <span>Price per person</span>
-                                <a href="#" class="price-btn">$250</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

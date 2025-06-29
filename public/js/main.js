@@ -259,4 +259,9 @@ $(document).ready(function() {
         $('#mc_embed_signup').find('form').ajaxChimp();
     });
 
+    // Tooltip
+    $(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+
 });
