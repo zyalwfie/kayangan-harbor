@@ -14,7 +14,7 @@
                 <h1 class="text-white">
                     Tentang Kami
                 </h1>
-                <p class="text-white link-nav"><a href="<?= base_url() ?>">Beranda </a> <span class="lnr lnr-arrow-right"></span> <a href="<?= route_to('landing.about') ?>"> Tentang Kami</a></p>
+                <p class="text-white link-nav"><a href="<?= base_url() ?>">Beranda </a> <span class="lnr lnr-arrow-right"></span> <a href="<?= route_to('landing.about') ?>"> <b>Tentang Kami</b></a></p>
             </div>
         </div>
     </div>

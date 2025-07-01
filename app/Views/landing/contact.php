@@ -12,11 +12,11 @@
         <div
             class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
-                <h1 class="text-white">Contact Us</h1>
+                <h1 class="text-white">Kontak Kami</h1>
                 <p class="text-white link-nav">
-                    <a href="index.html">Home </a>
+                    <a href="<?= base_url() ?>">Beranda </a>
                     <span class="lnr lnr-arrow-right"></span>
-                    <a href="contact.html"> Contact Us</a>
+                    <a href="<?= route_to('landing.contact') ?>"> <b>Kontak Kami</b></a>
                 </p>
             </div>
         </div>
