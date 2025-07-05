@@ -28,41 +28,49 @@
 
                 <li class="sidebar-title">Manajemen</li>
                 <?php if (in_groups('admin')) : ?>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item <?= url_is('dashboard/users*') ? 'active' : '' ?>">
                         <a href="<?= route_to('dashboard.admin.users.index') ?>" class='sidebar-link'>
                             <i class="bi bi-people-fill"></i>
                             <span>Pengguna</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="<?= route_to('dashboard.admin.tickets.index') ?>" class='sidebar-link'>
+                    <li class="sidebar-item <?= url_is('dashboard/tickets*') ? 'active' : '' ?>">
+                        <a href="<?= route_to('dashboard.admin.tickets.index') ?>l" class='sidebar-link'>
                             <i class="bi bi-ticket-fill"></i>
                             <span>Tiket</span>
                         </a>
                     </li>
                 <?php endif; ?>
                 <li class="sidebar-item <?= url_is('dashboard/orders*') ? 'active' : '' ?>">
-                    <a href="<?= in_groups('admin') ? route_to('dashboard.admin.orders.index') : route_to('dashboard.user.orders.index') ?>" class='sidebar-link'>
+                    <a href="<?= in_groups('admin') ? route_to('dashboard.admin.orders.index') :  route_to('dashboard.user.orders.index') ?>" class='sidebar-link'>
                         <i class="bi bi-cart-fill"></i>
                         <span>Pesanan</span>
                     </a>
                 </li>
+                <?php if (in_groups('user')) : ?>
+                    <li class="sidebar-item <?= url_is('dashboard/history*') ? 'active' : '' ?>">
+                        <a href="<?= route_to('dashboard.user.history.index') ?>" class='sidebar-link'>
+                            <i class="bi bi-clock-fill"></i>
+                            <span>Riwayat Pesanan</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="sidebar-title">Pengaturan</li>
-                <li class="sidebar-item">
+                <li class="sidebar-item <?= uri_string() === 'dashboard/profile' ? 'active' : '' ?>">
                     <a href="<?= route_to('dashboard.profile.index') ?>" class='sidebar-link'>
                         <i class="bi bi-person-fill"></i>
                         <span>Profil</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item <?= uri_string() === 'dashboard/profile/edit' ? 'active' : '' ?>">
                     <a href="<?= route_to('dashboard.profile.edit') ?>" class='sidebar-link'>
                         <i class="bi bi-pencil-fill"></i>
                         <span>Ubah Profil</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?= route_to('logout') ?>" class='sidebar-link'>
+                    <a href="<?= url_to('logout') ?>" class='sidebar-link'>
                         <i class="bi bi-arrow-right-square-fill"></i>
                         <span>Keluar</span>
                     </a>

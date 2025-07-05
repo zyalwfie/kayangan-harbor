@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h4>Pesanan</h4>
-                            <span class="badge badge-info">3</span>
+                            <?= $pager->links('default') ?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

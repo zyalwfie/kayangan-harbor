@@ -148,7 +148,7 @@
 .avatar img {
     width: 32px;
     height: 32px;
-    border-radius: 50%
+    /* border-radius: 50% */
 }
 
 .avatar .avatar-status {
@@ -179,7 +179,7 @@
 .avatar.avatar-lg img {
     width: 48px;
     height: 48px;
-    font-size: 1.2rem
+    font-size: 1.2rem;
 }
 
 .avatar.avatar-xl .avatar-content,
