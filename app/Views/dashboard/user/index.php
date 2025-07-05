@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon purple">
@@ -31,15 +31,15 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon yellow">
-                                        <i class="iconly-boldSearch"></i>
+                                        <i class="iconly-boldTime-Circle"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Antrian</h6>
+                                    <h6 class="text-muted font-semibold">Tertunda</h6>
                                     <h6 class="font-extrabold mb-0">183.000</h6>
                                 </div>
                             </div>
@@ -48,15 +48,15 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon green">
-                                        <i class="iconly-boldBag"></i>
+                                        <i class="iconly-boldBuy"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pesanan</h6>
+                                    <h6 class="text-muted font-semibold">Berhasil</h6>
                                     <h6 class="font-extrabold mb-0">80.000</h6>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon red">
@@ -137,7 +137,7 @@
                     </div>
                 </div>
                 <div class="card col-12 col-lg-3">
-                    <div class="card-body py-4 px-5">
+                    <div class="card-body py-2">
                         <div class="d-flex align-items-center">
                             <div class="avatar avatar-xl mr-2">
                                 <img src="img/profile/user-1.svg" alt="Face 1">
