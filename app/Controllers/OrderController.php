@@ -44,6 +44,41 @@ class OrderController extends BaseController
         return view('landing/order', $data);
     }
 
+    // Dashboard
+    public function dashboardIndex()
+    {
+        $orders = $this->pesananModel
+            ->select('pesanan.*, gambar, harga, golongan, jenis, golongan_kendaraan.deskripsi as deskripsi_golongan_kendaraan, jenis_pengguna_jasa.deskripsi as deskripsi_jenis_pengguna_jasa, bukti_pembayaran, full_name, username, avatar, email')
+            ->join('tiket', 'pesanan.id_tiket = tiket.id')
+            ->join('jenis_pengguna_jasa', 'tiket.id_jenis_pengguna_jasa = jenis_pengguna_jasa.id')
+            ->join('golongan_kendaraan', 'tiket.id_golongan_kendaraan = golongan_kendaraan.id', 'left')
+            ->join('pembayaran', 'pembayaran.id_pesanan = pesanan.id')
+            ->join('users', 'pesanan.id_pengguna = users.id');
+        if (in_groups('user')) {
+            $orders->where('id_pengguna', user()->id);
+        }
+        $orders->orderBy('created_at', 'asc');
+        $ordersArray = $orders->paginate(5);
+
+        $orders = array_map(function ($item) {
+            return (object) $item;
+        }, $ordersArray);
+
+        $pager = $this->pesananModel->pager;
+
+        $data = [
+            'pageTitle' => 'Kayangan Harbor | Dasbor',
+            'orders' => $orders,
+            'pager' => $pager
+        ];
+
+        if (in_groups('admin')) {
+            return view('dashboard/admin/order/index', $data);
+        } else {
+            return view('dashboard/user/order/index', $data);
+        }
+    }
+
     public function store()
     {
         $userId = user()->id;

@@ -12,7 +12,7 @@
         <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
                 <a href="<?= route_to('landing.tickets') ?>" class="btn btn-outline-warning btn-lg mr-3">Lanjut beli</a>
-                <a href="<?= route_to('user.dashboard.order.index') ?>" class="btn btn-warning btn-lg">Cek pesanan</a>
+                <a href="<?= route_to('dashboard.user.orders.index') ?>" class="btn btn-warning btn-lg">Cek pesanan</a>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                     <div class="display-3 mb-2">
                         <i class="bi bi-bag-check-fill"></i>
                     </div>
-                    <h1 class="mb-10"><?= session('success') ?></h1>
+                    <h1 class="mb-10"><?= session()->has('success') ? session('success') : 'Silahkan Cek Kembali Pesanan Anda' ?></h1>
                     <p>Terima kasih, pesanan kamu sedang diproses.</p>
                 </div>
             </div>

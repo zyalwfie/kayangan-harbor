@@ -3,14 +3,34 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\PesananModel;
 
 class UserController extends BaseController
 {
+    protected $pesananModel;
+
+    public function __construct()
+    {
+        $this->pesananModel = new PesananModel();
+    }
+    
     public function index()
     {
+        $recentOrder = $this->pesananModel->orderBy('created_at', 'desc')->findAll(4);
+        $orderCount = count($recentOrder);
+        $pendingOrderCount = $this->pesananModel->where('status_tiket', 'tertunda')->where('id_pengguna', user()->id)->countAllResults();
+        $successOrderCount = $this->pesananModel->where('status_tiket', 'berhasil')->where('id_pengguna', user()->id)->countAllResults();
+        $failedOrderCount = $this->pesananModel->where('status_tiket', 'gagal')->where('id_pengguna', user()->id)->countAllResults();
+        $spendingAmount = $this->pesananModel->selectSum('total_harga')->where('id_pengguna', user()->id)->first()['total_harga'] ?? 0;
+        
         $data = [
-            'pageTitle' => 'Kayangan Harbor | Dasbor'
+            'pageTitle' => 'Kayangan Harbor | Dasbor',
+            'recentOrder' => $recentOrder,
+            'orderCount' => $orderCount,
+            'spendingAmount' => $spendingAmount,
+            'pendingOrderCount' => $pendingOrderCount,
+            'successOrderCount' => $successOrderCount,
+            'failedOrderCount' => $failedOrderCount,
         ];
 
         return view('dashboard/user/index', $data);

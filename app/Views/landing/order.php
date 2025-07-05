@@ -159,7 +159,7 @@
                         <div id="file-preview" class="mt-3"></div>
                     </div>
                     <div class="d-flex">
-                        <a href="<?= route_to('landing.thanks') ?>" class="btn btn-outline-warning mr-2">Lakukan nanti</a>
+                        <a href="<?= route_to('order.thanks') ?>" class="btn btn-outline-warning mr-2">Lakukan nanti</a>
                         <button type="submit" class="btn btn-warning">Unggah</button>
                     </div>
                     <?= form_close() ?>
