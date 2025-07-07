@@ -10,6 +10,7 @@ $routes->get('about', 'LandingController::about', ['as' => 'landing.about']);
 $routes->get('tickets', 'LandingController::tickets', ['as' => 'landing.tickets']);
 $routes->get('contact', 'LandingController::contact', ['as' => 'landing.contact']);
 
+// Order on landing
 $routes->group('order', [
     'filter' => 'login',
     'filter' => 'role:user'

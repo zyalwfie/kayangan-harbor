@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateJenisPenggunaJasaTable extends Migration
+class CreateGolonganKendaraanTable extends Migration
 {
     public function up()
     {

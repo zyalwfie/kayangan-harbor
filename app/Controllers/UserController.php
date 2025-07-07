@@ -7,13 +7,15 @@ use App\Models\PesananModel;
 
 class UserController extends BaseController
 {
-    protected $pesananModel;
+    protected $db, $pesananModelBuilder, $pesananModel;
 
     public function __construct()
     {
+        $this->db = \Config\Database::connect();
+        $this->pesananModelBuilder = $this->db->table('pesanan');
         $this->pesananModel = new PesananModel();
     }
-    
+
     public function index()
     {
         $recentOrder = $this->pesananModel->orderBy('created_at', 'desc')->findAll(4);
@@ -34,5 +36,20 @@ class UserController extends BaseController
         ];
 
         return view('dashboard/user/index', $data);
+    }
+
+    public function orders()
+    {
+        $query = $this->pesananModelBuilder
+            ->select('pesanan.*')
+            ->get();
+        $orders = $query->getResultObject();
+
+        $data = [
+            'pageTitle' => 'Kayangan Harbor | Dasbor | Pesanan',
+            'orders' => $orders
+        ];
+
+        return view('dashboard/user/order/index', $data);
     }
 }

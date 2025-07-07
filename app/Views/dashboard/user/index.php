@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon purple">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon yellow">
@@ -48,11 +48,11 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon green">
-                                        <i class="iconly-boldBag"></i>
+                                        <i class="iconly-boldBuy"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
-                        <div class="card-body px-3 py-4-5">
+                        <div class="card-body px-3 py-3">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon red">

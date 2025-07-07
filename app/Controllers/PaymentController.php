@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 use App\Models\PembayaranModel;
 use App\Models\PesananModel;
 use App\Models\TiketModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class PaymentController extends BaseController
 {
