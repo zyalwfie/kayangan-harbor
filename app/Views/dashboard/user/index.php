@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon yellow">
-                                        <i class="iconly-boldSearch"></i>
+                                        <i class="iconly-boldTime-Circle"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -103,7 +103,7 @@
                                         <?php foreach ($recentOrder as $order) : ?>
                                             <tr>
                                                 <td class="text-bold-500"><?= $order['nama_pemesan'] ?></td>
-                                                <td><?= $order['total_harga'] ?></td>
+                                                <td>Rp<?= number_format($order['total_harga'], '0', '.', ',') ?></td>
                                                 <td class="text-bold-500"><?= $order['jadwal_masuk'] ?></td>
                                                 <td class="text-bold-500">
                                                     <?php if ($order['status_tiket'] === 'tertunda') : ?>
@@ -124,7 +124,7 @@
         </div>
         <div class="col-12 col-lg-3">
             <div class="card">
-                <div class="card-body py-4 px-5">
+                <div class="card-body p-0">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl mr-2">
                             <img src="<?= base_url('img/profile/') . user()->avatar ?>" alt="Avatar">
@@ -178,12 +178,64 @@
                         </div>
                     </div>
                     <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Lihat semua pesan</button>
+                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3' id="seeMessages" style="cursor: pointer;">Lihat semua</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+</div>
+
+<!-- Notifications modal -->
+<div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="notificationsModalLabel">Pesan Notifikasi</h1>
+            </div>
+            <div class="modal-body">
+                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo w">
+                    <div class="avatar avatar-sm mr-3">
+                        <img src="<?= base_url() ?>img/notification/info.svg">
+                    </div>
+                    <div class="name ms-4">
+                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
+                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
+                    </div>
+                </div>
+                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo r">
+                    <div class="avatar avatar-sm mr-3">
+                        <img src="<?= base_url() ?>img/notification/info.svg">
+                    </div>
+                    <div class="name ms-4">
+                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
+                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
+                    </div>
+                </div>
+                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo t">
+                    <div class="avatar avatar-sm mr-3">
+                        <img src="<?= base_url() ?>img/notification/info.svg">
+                    </div>
+                    <div class="name ms-4">
+                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
+                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
+                    </div>
+                </div>
+                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo tg">
+                    <div class="avatar avatar-sm mr-3">
+                        <img src="<?= base_url() ?>img/notification/info.svg">
+                    </div>
+                    <div class="name ms-4">
+                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
+                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+            </div>
+        </div>
+    </div>
 </div>
 <?= $this->endSection(); ?>
 
@@ -198,4 +250,15 @@
         text-overflow: ellipsis;
     }
 </style>
+<?= $this->endSection(); ?>
+
+<?= $this->section('foot_js'); ?>
+<script>
+    const notificationsModal = new bootstrap.Modal(document.getElementById('notificationsModal'));
+    const seeMessagesBtn = document.getElementById('seeMessages');
+
+    seeMessagesBtn.addEventListener('click', () => {
+        notificationsModal.show();
+    })
+</script>
 <?= $this->endSection(); ?>

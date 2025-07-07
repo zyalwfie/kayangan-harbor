@@ -25,14 +25,14 @@ $routes->group('order', [
 $routes->group('dashboard', ['filter' => 'login'], static function($routes) {
 
     // Admin
-    $routes->group('', ['filter' => 'role:admin'], static function($routes) {
+    $routes->group('admin', ['filter' => 'role:admin'], static function($routes) {
         $routes->get('', 'AdminController', ['as' => 'dashboard.admin.index']);
 
         $routes->get('orders', 'OrderController::dashboardIndex', ['as' => 'dashboard.admin.orders.index']);
     });
     
     // User
-    $routes->group('', ['filter' => 'role:user'], static function($routes) {
+    $routes->group('user', ['filter' => 'role:user'], static function($routes) {
         $routes->get('', 'UserController', ['as' => 'dashboard.user.index']);
 
         $routes->get('orders', 'OrderController::dashboardIndex', ['as' => 'dashboard.user.orders.index']);

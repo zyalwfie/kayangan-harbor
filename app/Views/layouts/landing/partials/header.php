@@ -69,12 +69,13 @@
                                     Dasbor
                                 </a>
                             </li>
+                        <?php else : ?>
+                            <li>
+                                <a href="<?= route_to('dashboard.user.index') ?>">
+                                    Dasbor
+                                </a>
+                            </li>
                         <?php endif; ?>
-                        <li>
-                            <a href="<?= route_to('dashboard.user.index') ?>">
-                                Dasbor
-                            </a>
-                        </li>
                         <li>
                             <button type="button" class="btn btn-outline-warning px-3" data-toggle="modal" data-target="#confirmModal">
                                 Keluar

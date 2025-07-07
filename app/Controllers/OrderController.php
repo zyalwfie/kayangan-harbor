@@ -69,7 +69,7 @@ class OrderController extends BaseController
         $data = [
             'pageTitle' => 'Kayangan Harbor | Dasbor',
             'orders' => $orders,
-            'pager' => $pager
+            'pager' => $pager,
         ];
 
         if (in_groups('admin')) {

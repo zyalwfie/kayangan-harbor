@@ -19,7 +19,7 @@
                         <span>Kembali</span>
                     </a>
                 </li>
-                <li class="sidebar-item <?= uri_string() === 'dashboard' ? 'active' : '' ?>">
+                <li class="sidebar-item <?= uri_string() === 'dashboard/admin' || uri_string() === 'dashboard/user' ? 'active' : '' ?>">
                     <a href="<?= in_groups('admin') ? route_to('dashboard.admin.index') : route_to('dashboard.user.index') ?>" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dasbor</span>
@@ -41,20 +41,12 @@
                         </a>
                     </li>
                 <?php endif; ?>
-                <li class="sidebar-item <?= url_is('dashboard/orders*') ? 'active' : '' ?>">
+                <li class="sidebar-item <?= url_is('dashboard/user/orders*') || url_is('dashboard/admin/orders*') ? 'active' : '' ?>">
                     <a href="<?= in_groups('admin') ? route_to('dashboard.admin.orders.index') :  route_to('dashboard.user.orders.index') ?>" class='sidebar-link'>
                         <i class="bi bi-cart-fill"></i>
                         <span>Pesanan</span>
                     </a>
                 </li>
-                <?php if (in_groups('user')) : ?>
-                    <li class="sidebar-item <?= url_is('dashboard/history*') ? 'active' : '' ?>">
-                        <a href="<?= route_to('dashboard.user.history.index') ?>" class='sidebar-link'>
-                            <i class="bi bi-clock-fill"></i>
-                            <span>Riwayat Pesanan</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
 
                 <li class="sidebar-title">Pengaturan</li>
                 <li class="sidebar-item <?= uri_string() === 'dashboard/profile' ? 'active' : '' ?>">
