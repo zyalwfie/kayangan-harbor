@@ -21,6 +21,7 @@
             <?= $this->renderSection('content'); ?>
 
             <?= $this->include('layouts/dashboard/partials/footer.php'); ?>
+            
         </div>
     </div>
 

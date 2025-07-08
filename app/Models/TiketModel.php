@@ -14,7 +14,7 @@ class TiketModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id_jenis_pengguna_jasa',
-        'id_golongan_kendaraan_id',
+        'id_golongan_kendaraan',
         'gambar',
         'pelabuhan_asal',
         'pelabuhan_tujuan',

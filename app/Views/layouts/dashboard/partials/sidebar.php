@@ -34,8 +34,8 @@
                             <span>Pengguna</span>
                         </a>
                     </li>
-                    <li class="sidebar-item <?= url_is('dashboard/tickets*') ? 'active' : '' ?>">
-                        <a href="<?= route_to('dashboard.admin.tickets.index') ?>l" class='sidebar-link'>
+                    <li class="sidebar-item <?= url_is('dashboard/admin/tickets*') ? 'active' : '' ?>">
+                        <a href="<?= route_to('dashboard.admin.tickets.index') ?>" class='sidebar-link'>
                             <i class="bi bi-ticket-fill"></i>
                             <span>Tiket</span>
                         </a>

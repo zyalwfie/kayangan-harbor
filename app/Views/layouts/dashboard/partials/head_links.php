@@ -7,4 +7,5 @@
 <link rel="stylesheet" href="<?= base_url() ?>perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="<?= base_url() ?>bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="<?= base_url() ?>css/app.css">
+<link rel="stylesheet" href="<?= base_url() ?>css/main.css">
 <link rel="shortcut icon" href="<?= base_url() ?>favicon.png" type="image/png">

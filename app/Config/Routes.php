@@ -29,7 +29,16 @@ $routes->group('dashboard', ['filter' => 'login'], static function($routes) {
     $routes->group('admin', ['filter' => 'role:admin'], static function($routes) {
         $routes->get('', 'AdminController', ['as' => 'dashboard.admin.index']);
 
+        // Order
         $routes->get('orders', 'OrderController::dashboardIndex', ['as' => 'dashboard.admin.orders.index']);
+
+        // Ticket
+        $routes->get('tickets', 'TicketController', ['as' => 'dashboard.admin.tickets.index']);
+        $routes->get('tickets/create', 'TicketController::create', ['as' => 'dashboard.admin.tickets.create']);
+        $routes->post('tickets/store', 'TicketController::store', ['as' => 'dashboard.admin.tickets.store']);
+        $routes->get('tickets/edit/(:num)', 'TicketController::edit/$1', ['as' => 'dashboard.admin.tickets.edit']);
+        $routes->post('tickets/update/(:num)', 'TicketController::update/$1', ['as' => 'dashboard.admin.tickets.update']);
+        $routes->post('tickets/destroy/(:num)', 'TicketController::destroy/$1', ['as' => 'dashboard.admin.tickets.destroy']);
     });
     
     // User

@@ -42,11 +42,11 @@ class CreateTiketTable extends Migration
                 'constraint' => 255,
             ],
             'jadwal_tiket_tersedia' => [
-                'type' => 'datetime',
+                'type' => 'date',
                 'null' => true,
             ],
             'jadwal_tiket_habis' => [
-                'type' => 'datetime',
+                'type' => 'date',
                 'null' => true
             ],
             'harga' => [
