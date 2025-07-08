@@ -3,17 +3,19 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\NotifikasiModel;
 use App\Models\PesananModel;
 
 class UserController extends BaseController
 {
-    protected $db, $pesananModelBuilder, $pesananModel;
+    protected $db, $pesananModelBuilder, $pesananModel, $notifikasiModel;
 
     public function __construct()
     {
         $this->db = \Config\Database::connect();
         $this->pesananModelBuilder = $this->db->table('pesanan');
         $this->pesananModel = new PesananModel();
+        $this->notifikasiModel = new NotifikasiModel();
     }
 
     public function index()
@@ -24,6 +26,7 @@ class UserController extends BaseController
         $successOrderCount = $this->pesananModel->where('status_tiket', 'berhasil')->where('id_pengguna', user()->id)->countAllResults();
         $failedOrderCount = $this->pesananModel->where('status_tiket', 'gagal')->where('id_pengguna', user()->id)->countAllResults();
         $spendingAmount = $this->pesananModel->selectSum('total_harga')->where('id_pengguna', user()->id)->first()['total_harga'] ?? 0;
+        $notifications = 
         
         $data = [
             'pageTitle' => 'Kayangan Harbor | Dasbor',
@@ -33,6 +36,7 @@ class UserController extends BaseController
             'pendingOrderCount' => $pendingOrderCount,
             'successOrderCount' => $successOrderCount,
             'failedOrderCount' => $failedOrderCount,
+            'notifications' => $this->notifikasiModel->where('id_pengguna', user()->id)->findAll(4)
         ];
 
         return view('dashboard/user/index', $data);

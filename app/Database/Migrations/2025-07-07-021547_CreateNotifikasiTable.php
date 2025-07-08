@@ -19,8 +19,6 @@ class CreateNotifikasiTable extends Migration
                 'type' => 'int',
                 'constraint' => 11,
                 'unsigned' => true,
-                'default' => null,
-                'null' => true
             ],
             'tipe_notifikasi' => [
                 'type' => 'enum',

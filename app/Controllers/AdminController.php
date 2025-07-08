@@ -14,7 +14,7 @@ class AdminController extends BaseController
     {
         $this->pesananModel = new PesananModel();
     }
-    
+
     public function index()
     {
         $recentOrder = $this->pesananModel->orderBy('created_at', 'desc')->findAll(4);
@@ -23,7 +23,7 @@ class AdminController extends BaseController
         $successOrderCount = $this->pesananModel->where('status_tiket', 'berhasil')->countAllResults();
         $failedOrderCount = $this->pesananModel->where('status_tiket', 'gagal')->countAllResults();
         $earnAmount = $this->pesananModel->selectSum('total_harga')->first()['total_harga'] ?? 0;
-        
+
         $data = [
             'pageTitle' => 'Kayangan Harbor | Dasbor',
             'recentOrder' => $recentOrder,
@@ -33,7 +33,7 @@ class AdminController extends BaseController
             'successOrderCount' => $successOrderCount,
             'failedOrderCount' => $failedOrderCount,
         ];
-        
+
         return view('dashboard/admin/index', $data);
     }
 }

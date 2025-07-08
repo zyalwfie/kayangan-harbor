@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pengeluaran</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Pengeluaran</h6>
                                     <h6 class="font-extrabold mb-0">Rp<?= number_format($spendingAmount, '0', '.', ',') ?></h6>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Tertunda</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Tertunda</h6>
                                     <h6 class="font-extrabold mb-0"><?= $pendingOrderCount ?></h6>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Berhasil</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Berhasil</h6>
                                     <h6 class="font-extrabold mb-0"><?= $successOrderCount ?></h6>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Gagal</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Gagal</h6>
                                     <h6 class="font-extrabold mb-0"><?= $failedOrderCount ?></h6>
                                 </div>
                             </div>
@@ -141,42 +141,31 @@
                     <h4>Pesan Terbaru</h4>
                 </div>
                 <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-sm mr-3">
-                            <img src="<?= base_url() ?>img/notification/info.svg">
+                    <?php if (!$notifications) : ?>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div>Belum ada pesan terbaru.</div>
                         </div>
-                        <div class="name ms-4">
-                            <h6 class="mb-1 font-weight-bold">Informasi!</h6>
-                            <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-sm mr-3">
-                            <img src="<?= base_url() ?>img/notification/warning.svg">
-                        </div>
-                        <div class="name ms-4">
-                            <h6 class="mb-1 font-weight-bold">Peringatan!</h6>
-                            <p class="text-muted mb-0 truncate-one-line">Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-sm mr-3">
-                            <img src="<?= base_url() ?>img/notification/check.svg">
-                        </div>
-                        <div class="name ms-4">
-                            <h6 class="mb-1 font-weight-bold">Berhasil!</h6>
-                            <p class="text-muted mb-0 truncate-one-line">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus adipisci cupiditate voluptatibus quasi molestiae similique modi ducimus tenetur neque.</p>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-sm mr-3">
-                            <img src="<?= base_url() ?>img/notification/failed.svg">
-                        </div>
-                        <div class="name ms-4">
-                            <h6 class="mb-1 font-weight-bold">Gagal!</h6>
-                            <p class="text-muted mb-0 truncate-one-line">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus adipisci cupiditate voluptatibus quasi molestiae similique modi ducimus tenetur neque.</p>
-                        </div>
-                    </div>
+                    <?php else : ?>
+                        <?php foreach ($notifications as $notification) : ?>
+                            <div class="recent-message d-flex px-4 py-3">
+                                <div class="avatar avatar-sm mr-3">
+                                    <?php if ($notification['tipe_notifikasi'] === 'biru') : ?>
+                                        <img src="<?= base_url() ?>img/notification/info.svg">
+                                    <?php elseif ($notification['tipe_notifikasi'] === 'kuning') : ?>
+                                        <img src="<?= base_url() ?>img/notification/warning.svg">
+                                    <?php elseif ($notification['tipe_notifikasi'] === 'hijau') : ?>
+                                        <img src="<?= base_url() ?>img/notification/check.svg">
+                                    <?php else : ?>
+                                        <img src="<?= base_url() ?>img/notification/failed.svg">
+                                    <?php endif; ?>
+                                </div>
+                                <div class="name ms-4">
+                                    <h6 class="mb-1 font-weight-bold"><?= $notification['kepala_notifikasi'] ?></h6>
+                                    <p class="text-muted mb-0 truncate-one-line"><?= $notification['isi_notifikasi'] ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     <div class="px-4">
                         <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3' id="seeMessages" style="cursor: pointer;">Lihat semua</button>
                     </div>

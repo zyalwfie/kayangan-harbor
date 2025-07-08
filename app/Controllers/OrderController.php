@@ -99,4 +99,6 @@ class OrderController extends BaseController
 
         return redirect()->route('order.index', [$orderId])->with('success', 'Pesanan telah dibuat!');
     }
+
+    public function update($orderId) {}
 }
