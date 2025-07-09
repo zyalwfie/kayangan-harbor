@@ -31,7 +31,7 @@ $routes->group('dashboard', ['filter' => 'login'], static function($routes) {
 
         // Order
         $routes->get('orders', 'OrderController::dashboardIndex', ['as' => 'dashboard.admin.orders.index']);
-        $routes->get('orders/update/(:num)', 'OrderController::update/$1', ['as' => 'dashboard.admin.orders.udpate']);
+        $routes->post('orders/update/(:num)', 'OrderController::update/$1', ['as' => 'dashboard.admin.orders.udpate']);
 
         // Ticket
         $routes->get('tickets', 'TicketController', ['as' => 'dashboard.admin.tickets.index']);

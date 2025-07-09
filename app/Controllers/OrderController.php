@@ -3,13 +3,14 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\NotifikasiModel;
 use App\Models\PembayaranModel;
 use App\Models\PesananModel;
 use App\Models\TiketModel;
 
 class OrderController extends BaseController
 {
-    protected $db, $tiketModel, $pesananModel, $pembayaranModel, $pesananModelBuilder;
+    protected $db, $tiketModel, $pesananModel, $pembayaranModel, $pesananModelBuilder, $notifikasiModel;
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class OrderController extends BaseController
         $this->tiketModel = new TiketModel();
         $this->pesananModel = new PesananModel();
         $this->pembayaranModel = new PembayaranModel();
+        $this->notifikasiModel = new NotifikasiModel();
     }
 
     public function index($orderId)
@@ -100,5 +102,17 @@ class OrderController extends BaseController
         return redirect()->route('order.index', [$orderId])->with('success', 'Pesanan telah dibuat!');
     }
 
-    public function update($orderId) {}
+    public function update($orderId)
+    {
+        $order = $this->pesananModel->find($orderId);
+
+        if (!$order) {
+            return redirect()->back()->with('not_found', 'Pesanan tidak ditemukan.');
+        }
+
+        $result = $this->pesananModel->update($orderId, [
+            'status_tiket' => 'aktif',
+            'status_pembayaran' => 'berhasil'
+        ]);
+    }
 }

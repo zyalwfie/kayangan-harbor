@@ -244,8 +244,8 @@
 
         document.querySelectorAll('.btn-approve-order').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                var orderId = btn.getAttribute('data-id_order');
-                document.getElementById('approveForm').action = 'dashboard/admin/orders/update/' + orderId;
+                const orderId = btn.getAttribute('data-id_order');
+                document.getElementById('approveForm').action = '/dashboard/admin/orders/update/' + orderId;
             });
         });
 
