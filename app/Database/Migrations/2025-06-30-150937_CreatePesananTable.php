@@ -58,7 +58,7 @@ class CreatePesananTable extends Migration
             ],
             'status_pembayaran' => [
                 'type' => 'ENUM',
-                'constraint' => ['tertunda', 'berhasil', 'tertunda'],
+                'constraint' => ['tertunda', 'berhasil', 'gagal'],
                 'default' => 'tertunda'
             ],
             'created_at' => [

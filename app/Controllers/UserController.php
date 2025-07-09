@@ -36,7 +36,9 @@ class UserController extends BaseController
             'pendingOrderCount' => $pendingOrderCount,
             'successOrderCount' => $successOrderCount,
             'failedOrderCount' => $failedOrderCount,
-            'notifications' => $this->notifikasiModel->where('id_pengguna', user()->id)->findAll(4)
+            'notifications' => $this->notifikasiModel->where('id_pengguna', user()->id)->orderBy('created_at', 'desc')->findAll(),
+            'newNotifications' => $this->notifikasiModel->where('id_pengguna', user()->id)->where('dibaca', 0)->findAll(4),
+            'totalNewNotif' => $this->notifikasiModel->where('id_pengguna', user()->id)->where('dibaca', 0)->countAllResults()
         ];
 
         return view('dashboard/user/index', $data);

@@ -10,30 +10,13 @@
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row fullscreen align-items-center justify-content-between">
-            <div class="col-lg-6 col-md-6 banner-left">
+            <div class="col-12 banner-left">
                 <h6 class="text-white">Mulai petualangan bahari anda</h6>
                 <h1 class="text-white">Kayangan Harbor</h1>
                 <p class="text-white">
                     Temukan kemudahan memesan tiket kapal secara online dengan harga terbaik. Jelajahi keindahan destinasi pelabuhan di Sumbawa dengan layanan kami yang cepat, aman, dan terpercaya.
                 </p>
-                <a href="#" class="primary-btn text-uppercase">Pesan Sekarang</a>
-            </div>
-            <div class="col-lg-4 col-md-6 banner-right">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="ferry-tab" data-toggle="tab" href="#ferry" role="tab" aria-controls="ferry" aria-selected="true">Kapal Ferry</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="ferry" role="tabpanel" aria-labelledby="ferry-tab">
-                        <form class="form-wrap">
-                            <input type="text" class="form-control" name="home" placeholder="Pelabuhan asal " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pelabuhan asal '">
-                            <input type="text" class="form-control" name="away" placeholder="Pelabuhan tujuan " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pelabuhan tujuan '">
-                            <input type="text" class="form-control date-picker" name="away" placeholder="Pilih tanggal " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pilih tanggal '">
-                            <a href="#" class="primary-btn text-uppercase">Cari tiket</a>
-                        </form>
-                    </div>
-                </div>
+                <a href="<?= route_to('landing.tickets') ?>" class="primary-btn text-uppercase">Cari Tiket</a>
             </div>
         </div>
     </div>

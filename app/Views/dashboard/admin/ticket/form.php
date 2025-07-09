@@ -6,7 +6,7 @@
 
 <?= $this->section('content'); ?>
 <div class="page-heading">
-    <h3>Daftar Semua Tiket</h3>
+    <h3>Aksi Tiket</h3>
 </div>
 <div class="page-content">
     <section id="multiple-column-form">

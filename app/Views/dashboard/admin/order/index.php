@@ -87,32 +87,67 @@
                                                     <td class="text-bold-500">
                                                         <?php if ($order->status_tiket === 'tertunda') : ?>
                                                             <span class="badge badge-warning text-capitalize"><?= $order->status_tiket ?></span>
+                                                        <?php elseif ($order->status_tiket === 'kadaluarsa') : ?>
+                                                            <span class="badge badge-secondary text-capitalize"><?= $order->status_tiket ?></span>
                                                         <?php else : ?>
                                                             <span class="badge badge-info text-capitalize"><?= $order->status_tiket ?></span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-outline-primary btn-lihat-order"
-                                                            data-bs-toggle="modal" data-bs-target="#detailModal"
-                                                            data-bukti-pembayaran="<?= $order->bukti_pembayaran ?>"
-                                                            data-pelabuhan_asal="<?= htmlspecialchars($order->pelabuhan_asal) ?>"
-                                                            data-pelabuhan_tujuan="<?= htmlspecialchars($order->pelabuhan_tujuan) ?>"
-                                                            data-nama_pemesan="<?= htmlspecialchars(($order->full_name) ? $order->full_name : $order->username) ?>"
-                                                            data-jumlah_penumpang="<?= htmlspecialchars($order->jumlah_penumpang) ?>"
-                                                            data-total_harga="<?= number_format($order->total_harga, '0', '.', ',') ?>"
-                                                            data-jadwal_masuk="<?= htmlspecialchars($order->jadwal_masuk) ?>"
-                                                            data-jenis="<?= $order->jenis ?>"
-                                                            data-golongan="<?= $order->golongan ?>"
-                                                            data-deskripsi_golongan_kendaraan="<?= $order->deskripsi_golongan_kendaraan ?>"
-                                                            data-status_tiket="<?= $order->status_tiket ?>">Lihat</button>
-                                                        <button
-                                                            class="btn <?= ($order->status_tiket === 'aktif') ? 'btn-success' : 'btn-outline-warning' ?> btn-approve-order"
-                                                            data-bs-target="#approveModal"
-                                                            data-bs-toggle="modal"
-                                                            data-id_order="<?= $order->id ?>"
-                                                            <?= ($order->id != $firstPendingOrderId || $order->status_tiket !== 'tertunda') ? 'disabled' : '' ?>>
-                                                            <?= ($order->status_tiket === 'aktif') ? 'Telah Disetujui' : 'Setujui' ?>
-                                                        </button>
+                                                        <div class="d-flex gap-1 align-items-center">
+                                                            <button type="button" class="btn btn-outline-primary btn-lihat-order d-flex align-items-center"
+                                                                data-bs-toggle="modal" data-bs-target="#detailModal"
+                                                                data-bukti-pembayaran="<?= $order->bukti_pembayaran ?>"
+                                                                data-pelabuhan_asal="<?= htmlspecialchars($order->pelabuhan_asal) ?>"
+                                                                data-pelabuhan_tujuan="<?= htmlspecialchars($order->pelabuhan_tujuan) ?>"
+                                                                data-nama_pemesan="<?= htmlspecialchars(($order->full_name) ? $order->full_name : $order->username) ?>"
+                                                                data-jumlah_penumpang="<?= htmlspecialchars($order->jumlah_penumpang) ?>"
+                                                                data-total_harga="<?= number_format($order->total_harga, '0', '.', ',') ?>"
+                                                                data-jadwal_masuk="<?= htmlspecialchars($order->jadwal_masuk) ?>"
+                                                                data-jenis="<?= $order->jenis ?>"
+                                                                data-golongan="<?= $order->golongan ?>"
+                                                                data-deskripsi_golongan_kendaraan="<?= $order->deskripsi_golongan_kendaraan ?>"
+                                                                data-status_tiket="<?= $order->status_tiket ?>">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                                                </svg>
+                                                            </button>
+                                                            <button
+                                                                class="btn <?= ($order->status_tiket === 'aktif') ? 'btn-success' : 'btn-outline-success' ?> btn-approve-order d-flex align-items-center"
+                                                                data-bs-target="#approveModal"
+                                                                data-bs-toggle="modal"
+                                                                data-id_order="<?= $order->id ?>"
+                                                                <?= ($order->id != $firstPendingOrderId || $order->status_tiket !== 'tertunda' || !$order->bukti_pembayaran) ? 'disabled' : '' ?>>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                                                </svg>
+                                                            </button>
+                                                            <button
+                                                                class="btn <?= ($order->status_tiket === 'kadaluarsa') ? 'btn-danger' : 'btn-outline-danger' ?> btn-cancel-order d-flex align-items-center"
+                                                                data-bs-target="#cancelModal"
+                                                                data-bs-toggle="modal"
+                                                                data-id_pesanan="<?= $order->id ?>"
+                                                                data-id_pengguna="<?= $order->id_pengguna ?>"
+                                                                <?= ($order->id != $firstPendingOrderId || $order->status_tiket !== 'tertunda' || !$order->bukti_pembayaran) ? 'disabled' : '' ?>>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                                                                </svg>
+                                                            </button>
+                                                            <?php if ($order->id === $firstPendingOrderId && $order->status_tiket === 'tertunda') : ?>
+                                                                <button
+                                                                    class="btn btn-outline-info btn-notif-order d-flex align-items-center"
+                                                                    data-bs-target="#notifModal"
+                                                                    data-bs-toggle="modal"
+                                                                    data-id_pesanan="<?= $order->id ?>"
+                                                                    data-id_pengguna="<?= $order->id_pengguna ?>">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-plus-fill" viewBox="0 0 16 16">
+                                                                        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z" />
+                                                                        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5" />
+                                                                    </svg>
+                                                                </button>
+                                                            <?php endif; ?>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -143,7 +178,7 @@
     </section>
 </div>
 
-<!-- Order Modal -->
+<!-- Detail order Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -230,6 +265,78 @@
         </div>
     </div>
 </div>
+
+<!-- Cancel order -->
+<div class="modal fade" id="cancelModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="cancelModalLabel">Yakin Ingin Membatalkan Pesanan Ini?</h1>
+            </div>
+            <div class="modal-body">
+                <?= form_open(route_to('dashboard.admin.orders.cancel')) ?>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                    </svg>
+                    <span>Berikan pesan ke pengguna.</span>
+                </div>
+                <input type="hidden" name="id_pesanan" id="id_pesanan">
+                <input type="hidden" name="id_pengguna" id="id_pengguna">
+                <div class="mb-3">
+                    <label for="kepala_notifikasi" class="form-label">Judul pesan</label>
+                    <input type="text" class="form-control" id="kepala_notifikasi" placeholder="Apa judul pesan" name="kepala_notifikasi">
+                </div>
+                <div class="mb-3">
+                    <label for="isi_notifikasi" class="form-label">Isi pesan</label>
+                    <textarea class="form-control" id="isi_notifikasi" rows="5" placeholder="Apa isi pesannya" name="isi_notifikasi"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <button type="submit" class="btn btn-danger">Ya, Batalkan</button>
+            </div>
+            <?= form_close() ?>
+        </div>
+    </div>
+</div>
+
+<!-- Notif order -->
+<div class="modal fade" id="notifModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="notifModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="notifModalLabel">Sampaikan Pesan ke Pengguna</h1>
+            </div>
+            <div class="modal-body">
+                <?= form_open(route_to('dashboard.admin.orders.notif')) ?>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                    </svg>
+                    <span>Berikan pesan ke pengguna.</span>
+                </div>
+                <input type="hidden" name="id_pesanan" id="id_pesanan_notif">
+                <input type="hidden" name="id_pengguna" id="id_pengguna_notif">
+                <div class="mb-3">
+                    <label for="kepala_notifikasi" class="form-label">Judul pesan</label>
+                    <input type="text" class="form-control" id="kepala_notifikasi" placeholder="Apa judul pesan" name="kepala_notifikasi">
+                </div>
+                <div class="mb-3">
+                    <label for="isi_notifikasi" class="form-label">Isi pesan</label>
+                    <textarea class="form-control" id="isi_notifikasi" rows="5" placeholder="Apa isi pesannya" name="isi_notifikasi"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
+            </div>
+            <?= form_close() ?>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('foot_js'); ?>
@@ -302,8 +409,28 @@
         document.querySelectorAll('.btn-approve-order').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 const orderId = btn.getAttribute('data-id_order');
-                document.getElementById('approveForm').action = '/dashboard/admin/orders/update/' + orderId;
+                document.getElementById('approveForm').action = '/dashboard/admin/orders/approve/' + orderId;
             });
+        });
+
+        document.querySelectorAll('.btn-cancel-order').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const orderIdEl = document.querySelector('#id_pesanan');
+                const userIdEl = document.querySelector('#id_pengguna');
+
+                orderIdEl.value = this.dataset.id_pesanan;
+                userIdEl.value = this.dataset.id_pengguna;
+            })
+        });
+
+        document.querySelectorAll('.btn-notif-order').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const orderIdEl = document.querySelector('#id_pesanan_notif');
+                const userIdEl = document.querySelector('#id_pengguna_notif');
+
+                orderIdEl.value = this.dataset.id_pesanan;
+                userIdEl.value = this.dataset.id_pengguna;
+            })
         });
 
         function baseUrl(path) {

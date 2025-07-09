@@ -31,7 +31,9 @@ $routes->group('dashboard', ['filter' => 'login'], static function($routes) {
 
         // Order
         $routes->get('orders', 'OrderController::dashboardIndex', ['as' => 'dashboard.admin.orders.index']);
-        $routes->post('orders/update/(:num)', 'OrderController::update/$1', ['as' => 'dashboard.admin.orders.udpate']);
+        $routes->post('orders/approve/(:num)', 'OrderController::approve/$1');
+        $routes->post('orders/cancel', 'OrderController::cancel', ['as' => 'dashboard.admin.orders.cancel']);
+        $routes->post('orders/notif', 'OrderController::notif', ['as' => 'dashboard.admin.orders.notif']);
 
         // Tickets
         $routes->get('tickets', 'TicketController', ['as' => 'dashboard.admin.tickets.index']);
@@ -51,6 +53,11 @@ $routes->group('dashboard', ['filter' => 'login'], static function($routes) {
         $routes->get('', 'UserController', ['as' => 'dashboard.user.index']);
 
         $routes->get('orders', 'OrderController::dashboardIndex', ['as' => 'dashboard.user.orders.index']);
+
+        $routes->post('payment/upload', 'PaymentController::upload', ['as' => 'dashboard.user.payment.upload']);
+
+        $routes->get('notification/read/(:num)', 'NotificationController::read/$1', ['as' => 'dashboard.user.notifications.read']);
+        $routes->post('notification/destroy', 'NotificationController::destroy', ['as' => 'dashboard.user.notifications.destroy']);
     });
 
 });

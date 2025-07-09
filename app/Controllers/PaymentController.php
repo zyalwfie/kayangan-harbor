@@ -25,6 +25,7 @@ class PaymentController extends BaseController
         $orderId = $this->request->getPost('id_pesanan');
         $payment = $this->pembayaranModel->where('id_pesanan', $orderId)->first();
         $proof = $this->request->getFile('bukti_pembayaran');
+        $uriString = $this->request->getPost('uri_string');
 
         $validationRule = [
             'bukti_pembayaran' => [
@@ -51,7 +52,11 @@ class PaymentController extends BaseController
                 if ($result) {
                     $proof->move(FCPATH . 'img/ticket/proof/', $newName);
 
-                    return redirect()->route('order.thanks')->with('success', 'Bukti pembayaran berhasil diupload.');
+                    if ($uriString) {
+                        return redirect()->back()->with('success', 'Bukti pembayaran berhasil diupload.');
+                    } else {
+                        return redirect()->route('order.thanks')->with('success', 'Bukti pembayaran berhasil diupload.');
+                    }
                 }
                 return redirect()->back()->with('error', 'Gagal mengupload file.');
             } else {
@@ -64,7 +69,11 @@ class PaymentController extends BaseController
                 if ($result) {
                     $proof->move(FCPATH . 'img/ticket/proof/', $newName);
 
-                    return redirect()->route('order.thanks')->with('success', 'Bukti pembayaran berhasil diperbarui.');
+                    if ($uriString) {
+                        return redirect()->back()->with('success', 'Bukti pembayaran berhasil diperbarui.');
+                    } else {    
+                        return redirect()->route('order.thanks')->with('success', 'Bukti pembayaran berhasil diperbarui.');
+                    }
                 }
                 return redirect()->back()->with('error', 'Gagal memperbarui file.');
             }

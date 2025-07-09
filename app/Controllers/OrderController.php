@@ -59,7 +59,7 @@ class OrderController extends BaseController
         if (in_groups('user')) {
             $orders->where('id_pengguna', user()->id);
         }
-        $orders->orderBy('created_at', 'asc');
+        $orders->orderBy('created_at', 'desc');
         $ordersArray = $orders->paginate(5);
 
         $orders = array_map(function ($item) {
@@ -102,7 +102,7 @@ class OrderController extends BaseController
         return redirect()->route('order.index', [$orderId])->with('success', 'Pesanan telah dibuat!');
     }
 
-    public function update($orderId)
+    public function approve($orderId)
     {
         $order = $this->pesananModel->find($orderId);
 
@@ -122,12 +122,76 @@ class OrderController extends BaseController
                 'id_pengguna' => $order['id_pengguna'],
                 'tipe_notifikasi' => 'hijau',
                 'kepala_notifikasi' => 'Pesanan Disetujui',
-                'isi_notifikasi' => 'Pesanan anda dengan ID #' . $orderId . ' telah disetujui dan tiket anda telah aktif.'
+                'isi_notifikasi' => 'Pesanan anda dengan ID#' . $orderId . ' telah disetujui dan tiket anda telah aktif.'
             ]);
 
             $this->db->transCommit();
 
             return redirect()->back()->with('success', 'Pesanan berhasil disetujui dan notifikasi telah dikirim ke pengguna.');
+        } catch (\Exception $e) {
+            $this->db->transRollback();
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function cancel()
+    {
+        $postData = $this->request->getPost();
+        
+        $order = $this->pesananModel->find($postData['id_pesanan']);
+
+        if (!$order) {
+            return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
+        }
+
+        $this->db->transBegin();
+
+        try {
+            $this->pesananModel->update($postData['id_pesanan'], [
+                'status_tiket' => 'kadaluarsa',
+                'status_pembayaran' => 'gagal'
+            ]);
+
+            $this->notifikasiModel->insert([
+                'id_pengguna' => $postData['id_pengguna'],
+                'tipe_notifikasi' => 'merah',
+                'kepala_notifikasi' => $postData['kepala_notifikasi'],
+                'isi_notifikasi' => $postData['isi_notifikasi'] . '<br />Cek <a href="/dashboard/user/orders/">pesananmu.</a>'
+            ]);
+
+            $this->db->transCommit();
+
+            return redirect()->back()->with('success', 'Pesanan berhasil dibatalkan dan notifikasi telah dikirim ke pengguna.');
+        } catch (\Exception $e) {
+            $this->db->transRollback();
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function notif()
+    {
+        $postData = $this->request->getPost();
+        $order = $this->pesananModel->find($postData['id_pesanan']);
+
+        if (!$order) {
+            return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
+        }
+
+        $this->db->transBegin();
+
+        try {
+            $this->notifikasiModel->insert([
+                'id_pengguna' => $postData['id_pengguna'],
+                'tipe_notifikasi' => 'biru',
+                'kepala_notifikasi' => $postData['kepala_notifikasi'],
+                'isi_notifikasi' => $postData['isi_notifikasi'] . '<br />Cek <a href="/dashboard/user/orders/">pesananmu.</a>'
+            ]);
+
+            $this->db->transCommit();
+
+            return redirect()->back()->with('success', 'Notifikasi berhasil dikirim ke pengguna.');
         } catch (\Exception $e) {
             $this->db->transRollback();
 

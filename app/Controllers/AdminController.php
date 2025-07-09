@@ -20,7 +20,7 @@ class AdminController extends BaseController
 
     public function index()
     {
-        $recentOrder = $this->pesananModel->orderBy('created_at', 'desc')->findAll(4);
+        $recentOrder = $this->pesananModel->where('status_pembayaran', 'tertunda')->where('status_tiket', 'tertunda')->orderBy('created_at', 'desc')->findAll(4);
         $orderCount = count($recentOrder);
         $pendingOrderCount = $this->pesananModel->where('status_tiket', 'tertunda')->countAllResults();
         $successOrderCount = $this->pesananModel->where('status_tiket', 'berhasil')->countAllResults();
