@@ -159,7 +159,7 @@
                                         <img src="<?= base_url() ?>img/notification/failed.svg">
                                     <?php endif; ?>
                                 </div>
-                                <div class="name ms-4">
+                                <div class="name">
                                     <h6 class="mb-1 font-weight-bold"><?= $notification['kepala_notifikasi'] ?></h6>
                                     <p class="text-muted mb-0 truncate-one-line"><?= $notification['isi_notifikasi'] ?></p>
                                 </div>
@@ -183,42 +183,25 @@
                 <h1 class="modal-title fs-5" id="notificationsModalLabel">Pesan Notifikasi</h1>
             </div>
             <div class="modal-body">
-                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo w">
-                    <div class="avatar avatar-sm mr-3">
-                        <img src="<?= base_url() ?>img/notification/info.svg">
+                <?php foreach ($notifications as $notification) : ?>
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-sm mr-3">
+                            <?php if ($notification['tipe_notifikasi'] === 'biru') : ?>
+                                <img src="<?= base_url() ?>img/notification/info.svg">
+                            <?php elseif ($notification['tipe_notifikasi'] === 'kuning') : ?>
+                                <img src="<?= base_url() ?>img/notification/warning.svg">
+                            <?php elseif ($notification['tipe_notifikasi'] === 'hijau') : ?>
+                                <img src="<?= base_url() ?>img/notification/check.svg">
+                            <?php else : ?>
+                                <img src="<?= base_url() ?>img/notification/failed.svg">
+                            <?php endif; ?>
+                        </div>
+                        <div class="name">
+                            <h6 class="mb-1 font-weight-bold"><?= $notification['kepala_notifikasi'] ?></h6>
+                            <p class="text-muted mb-0"><?= $notification['isi_notifikasi'] ?></p>
+                        </div>
                     </div>
-                    <div class="name ms-4">
-                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
-                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
-                    </div>
-                </div>
-                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo r">
-                    <div class="avatar avatar-sm mr-3">
-                        <img src="<?= base_url() ?>img/notification/info.svg">
-                    </div>
-                    <div class="name ms-4">
-                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
-                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
-                    </div>
-                </div>
-                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo t">
-                    <div class="avatar avatar-sm mr-3">
-                        <img src="<?= base_url() ?>img/notification/info.svg">
-                    </div>
-                    <div class="name ms-4">
-                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
-                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
-                    </div>
-                </div>
-                <div class="recent-message-inside-modal d-flex px-4 py-3" data-text="hallo tg">
-                    <div class="avatar avatar-sm mr-3">
-                        <img src="<?= base_url() ?>img/notification/info.svg">
-                    </div>
-                    <div class="name ms-4">
-                        <h6 class="mb-1 font-weight-bold">Informasi!</h6>
-                        <p class="text-muted mb-0 truncate-one-line">Lorem, ipsum dolor.</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>

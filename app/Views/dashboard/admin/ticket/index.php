@@ -41,7 +41,7 @@
                                     </svg>
                                 </button>
                             </div>
-                        <?php elseif (session()->has('failed')) : ?>
+                        <?php elseif (session()->has('error')) : ?>
                             <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between align-items-center px-3" role="alert">
                                 <div class="d-flex gap-2 align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
@@ -49,7 +49,7 @@
                                         <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
                                     </svg>
                                     <div>
-                                        <?= session('failed') ?>
+                                        <?= session('error') ?>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-light d-flex align-items-center" data-bs-dismiss="alert" aria-label="Close">

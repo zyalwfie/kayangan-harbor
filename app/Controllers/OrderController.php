@@ -107,12 +107,31 @@ class OrderController extends BaseController
         $order = $this->pesananModel->find($orderId);
 
         if (!$order) {
-            return redirect()->back()->with('not_found', 'Pesanan tidak ditemukan.');
+            return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
         }
 
-        $result = $this->pesananModel->update($orderId, [
-            'status_tiket' => 'aktif',
-            'status_pembayaran' => 'berhasil'
-        ]);
+        $this->db->transBegin();
+
+        try {
+            $this->pesananModel->update($orderId, [
+                'status_tiket' => 'aktif',
+                'status_pembayaran' => 'berhasil'
+            ]);
+
+            $this->notifikasiModel->insert([
+                'id_pengguna' => $order['id_pengguna'],
+                'tipe_notifikasi' => 'hijau',
+                'kepala_notifikasi' => 'Pesanan Disetujui',
+                'isi_notifikasi' => 'Pesanan anda dengan ID #' . $orderId . ' telah disetujui dan tiket anda telah aktif.'
+            ]);
+
+            $this->db->transCommit();
+
+            return redirect()->back()->with('success', 'Pesanan berhasil disetujui dan notifikasi telah dikirim ke pengguna.');
+        } catch (\Exception $e) {
+            $this->db->transRollback();
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

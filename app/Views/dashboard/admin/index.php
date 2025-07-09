@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pendapatan</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Pendapatan</h6>
                                     <h6 class="font-extrabold mb-0">Rp<?= number_format($earnAmount, '0', '.', ',') ?></h6>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Tertunda</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Tertunda</h6>
                                     <h6 class="font-extrabold mb-0"><?= $pendingOrderCount ?></h6>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pesanan</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Pesanan</h6>
                                     <h6 class="font-extrabold mb-0"><?= $successOrderCount ?></h6>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Gagal</h6>
+                                    <h6 class="text-muted font-semibold mb-2">Gagal</h6>
                                     <h6 class="font-extrabold mb-0"><?= $failedOrderCount ?></h6>
                                 </div>
                             </div>
