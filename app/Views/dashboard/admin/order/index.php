@@ -106,7 +106,7 @@
                                                             data-deskripsi_golongan_kendaraan="<?= $order->deskripsi_golongan_kendaraan ?>"
                                                             data-status_tiket="<?= $order->status_tiket ?>">Lihat</button>
                                                         <button
-                                                            class="btn <?= ($order->status_tiket === 'aktif') ? 'btn-outline-success' : 'btn-outline-warning' ?> btn-approve-order"
+                                                            class="btn <?= ($order->status_tiket === 'aktif') ? 'btn-success' : 'btn-outline-warning' ?> btn-approve-order"
                                                             data-bs-target="#approveModal"
                                                             data-bs-toggle="modal"
                                                             data-id_order="<?= $order->id ?>"

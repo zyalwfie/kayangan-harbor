@@ -28,7 +28,7 @@
 
                 <li class="sidebar-title">Manajemen</li>
                 <?php if (in_groups('admin')) : ?>
-                    <li class="sidebar-item <?= url_is('dashboard/users*') ? 'active' : '' ?>">
+                    <li class="sidebar-item <?= url_is('dashboard/admin/users*') ? 'active' : '' ?>">
                         <a href="<?= route_to('dashboard.admin.users.index') ?>" class='sidebar-link'>
                             <i class="bi bi-people-fill"></i>
                             <span>Pengguna</span>
