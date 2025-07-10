@@ -97,6 +97,26 @@
             </div>
         </div>
 
+        <?php
+        $search = $_GET['q'] ?? '';
+        // $date = $_GET['date'] ?? '';
+        $filteredTicktes = $tickets;
+
+        if ($search) {
+            $filteredTicktes = array_filter($tickets, function ($ticket) use ($search) {
+                return stripos($ticket->pelabuhan_asal, $search) !== false;
+            });
+        }
+
+        $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+        $perPage = 5;
+        $total = count($filteredTicktes);
+        $totalPages = (int) ceil($total / $perPage);
+        $start = ($page - 1) * $perPage;
+        $paginatedTickets = array_slice($filteredTicktes, $start, $perPage);
+        $index = $start + 1;
+        ?>
+
         <div class="row">
             <?php if (session()->has('error')) : ?>
                 <div class="col-12">
@@ -108,71 +128,103 @@
                     </div>
                 </div>
             <?php endif; ?>
-            <div class="col-12 d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-end">
-                <div class="form-group m-0 w-100">
-                    <form method="get" class="d-flex align-items-end gap-2">
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-end mb-4">
+                <form method="get" class="d-flex align-items-center gap-2">
+                    <!-- <div class="form-group my-0 w-100 d-flex gap-2 align-items-center">
                         <div class="mr-2">
-                            <input type="text" class="form-control" id="search" name="search" placeholder="Cari tiket di sini">
+                            <input type="date" class="form-control" id="search" name="date" placeholder="Cari tiket di sini" value="<?= isset($_GET['date']) ? esc($_GET['date']) : '' ?>">
                         </div>
                         <button class="btn btn-warning"><i class="bi bi-search"></i></button>
-                    </form>
-                </div>
-                <nav aria-label="Page navigation example">
+                    </div> -->
+                    <div class="form-group my-0 w-100 d-flex gap-2 align-items-center mr-2">
+                        <div class="mr-2">
+                            <input type="text" class="form-control" id="search" name="q" placeholder="Cari tiket di sini" value="<?= isset($_GET['q']) ? esc($_GET['q']) : '' ?>">
+                        </div>
+                        <button class="btn btn-warning"><i class="bi bi-search"></i></button>
+                    </div>
+                    <a href="<?= route_to('landing.tickets') ?>" class="btn btn-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </a>
+                </form>
+                <nav aria-label="Page navigation">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-caret-left"></i></a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-caret-right"></i></a></li>
+                        <li class="page-item<?= $page <= 1 ? ' disabled' : '' ?>">
+                            <a class="page-link" href="?q=<?= urlencode($search) ?>&page=<?= $page - 1 ?>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                                </svg>
+                            </a>
+                        </li>
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <li class="page-item<?= $i == $page ? ' active' : '' ?>">
+                                <a class="page-link" href="?q=<?= urlencode($search) ?>&page=<?= $i ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
+                        <li class="page-item<?= $page >= $totalPages ? ' disabled' : '' ?>">
+                            <a class="page-link" href="?q=<?= urlencode($search) ?>&page=<?= $page + 1 ?>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
-            <?php foreach ($tickets as $ticket) : ?>
-                <div class="col-lg-4">
-                    <div class="single-destinations">
-                        <div class="thumb">
-                            <img src="img/ticket/<?= $ticket->gambar ?>" alt="<?= $ticket->gambar ?>">
-                        </div>
-                        <div class="details">
-                            <h4>Tujuan <?= $ticket->pelabuhan_tujuan ?></h4>
-                            <p>Jenis pengguna jasa, <b><?= $ticket->jenisPenggunaJasa ?></b></p>
-                            <button type="button" class="btn btn-secondary mb-2" disabled data-toggle="tooltip" data-placement="right" title="<?= $ticket->golonganKendaraan ? $ticket->deskripsiGolonganKendaraan : 'Tidak ada golongan kendaraan' ?>"><b><?= $ticket->golonganKendaraan ? $ticket->golonganKendaraan : 'Golongan 0' ?></b></button>
-                            <ul class="package-list">
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <span>Durasi</span>
-                                    <span>± 1 jam 30 menit</span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <span>Tanggal Tersedia</span>
-                                    <?php
-                                    $formatter = new \IntlDateFormatter('id_ID', \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, null, null, "MMMM d, yyyy");
-                                    ?>
-                                    <span><?= $formatter->format(new DateTime($ticket->jadwal_tiket_tersedia)); ?></span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <span>Tanggal Habis</span>
-                                    <span><?= $formatter->format(new DateTime($ticket->jadwal_tiket_tersedia)); ?></span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <span>Tersisa</span>
-                                    <span><?= $ticket->stok ?></span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <span>Harga Perorang</span>
-                                    <span class="price-btn">Rp<?= number_format($ticket->harga, '0', '.', ',') ?></span>
-                                </li>
-                                <li>
-                                    <?php if (logged_in()) : ?>
-                                        <button class="btn btn-outline-warning w-100 showOrderModalBtn" type="button" data-toggle="modal" data-target="#orderModal" data-id_tiket="<?= $ticket->id ?>" data-pelabuhan_asal="<?= $ticket->pelabuhan_asal ?>" data-pelabuhan_tujuan="<?= $ticket->pelabuhan_tujuan ?>" data-harga="<?= $ticket->harga ?>" id="<?= 'show-' . $ticket->id ?>">Pesan Sekarang</button>
-                                    <?php else : ?>
-                                        <a href="<?= url_to('login') ?>" class="btn btn-outline-warning w-100">Masuk Untuk Pesan</a>
-                                    <?php endif; ?>
-                                </li>
-                            </ul>
+            <?php if (!$paginatedTickets) : ?>
+                <div class="col-12 text-center">
+                    <h3>Tiket tidak ditemukan.</h3>
+                </div>
+            <?php else : ?>
+                <?php foreach ($paginatedTickets as $ticket) : ?>
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img src="img/ticket/<?= $ticket->gambar ?>" alt="<?= $ticket->gambar ?>">
+                            </div>
+                            <div class="details">
+                                <h4>Tujuan <?= $ticket->pelabuhan_tujuan ?></h4>
+                                <p>Jenis pengguna jasa, <b><?= $ticket->jenisPenggunaJasa ?></b></p>
+                                <button type="button" class="btn btn-secondary mb-2" disabled data-toggle="tooltip" data-placement="right" title="<?= $ticket->golonganKendaraan ? $ticket->deskripsiGolonganKendaraan : 'Tidak ada golongan kendaraan' ?>"><b><?= $ticket->golonganKendaraan ? $ticket->golonganKendaraan : 'Golongan 0' ?></b></button>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Durasi</span>
+                                        <span>± 1 jam 30 menit</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Tanggal Tersedia</span>
+                                        <?php
+                                        $formatter = new \IntlDateFormatter('id_ID', \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, null, null, "MMMM d, yyyy");
+                                        ?>
+                                        <span><?= $formatter->format(new DateTime($ticket->jadwal_tiket_tersedia)); ?></span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Tanggal Habis</span>
+                                        <span><?= $formatter->format(new DateTime($ticket->jadwal_tiket_tersedia)); ?></span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Tersisa</span>
+                                        <span><?= $ticket->stok ?></span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Harga Perorang</span>
+                                        <span class="price-btn">Rp<?= number_format($ticket->harga, '0', '.', ',') ?></span>
+                                    </li>
+                                    <li>
+                                        <?php if (logged_in()) : ?>
+                                            <button class="btn btn-outline-warning w-100 showOrderModalBtn" type="button" data-toggle="modal" data-target="#orderModal" data-id_tiket="<?= $ticket->id ?>" data-pelabuhan_asal="<?= $ticket->pelabuhan_asal ?>" data-pelabuhan_tujuan="<?= $ticket->pelabuhan_tujuan ?>" data-harga="<?= $ticket->harga ?>" id="<?= 'show-' . $ticket->id ?>">Pesan Sekarang</button>
+                                        <?php else : ?>
+                                            <a href="<?= url_to('login') ?>" class="btn btn-outline-warning w-100">Masuk Untuk Pesan</a>
+                                        <?php endif; ?>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>

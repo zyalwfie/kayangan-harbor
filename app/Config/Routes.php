@@ -60,4 +60,8 @@ $routes->group('dashboard', ['filter' => 'login'], static function($routes) {
         $routes->post('notification/destroy', 'NotificationController::destroy', ['as' => 'dashboard.user.notifications.destroy']);
     });
 
+    // Profile
+    $routes->get('profile', 'ProfileController', ['as' => 'dashboard.profile.index']);
+    $routes->get('profile/edit', 'ProfileController::editProfile', ['as' => 'dashboard.profile.edit']);
+    $routes->post('profile/update', 'ProfileController::updateProfile', ['as' => 'dashboard.profile.update']);
 });
