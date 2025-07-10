@@ -17,6 +17,15 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h4>Pesanan</h4>
                         </div>
+                        <?php
+                        $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+                        $perPage = 5;
+                        $total = count($orders);
+                        $totalPages = (int) ceil($total / $perPage);
+                        $start = ($page - 1) * $perPage;
+                        $paginatedOrders = array_slice($orders, $start, $perPage);
+                        $index = $start + 1;
+                        ?>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <?php if (session()->has('success')) : ?>
@@ -66,7 +75,7 @@
                                     </thead>
                                     <?php
                                     $firstPendingOrderId = null;
-                                    foreach ($orders as $o) {
+                                    foreach ($paginatedOrders as $o) {
                                         if ($o->status_tiket === 'tertunda') {
                                             $firstPendingOrderId = $o->id;
                                             break;
@@ -74,12 +83,12 @@
                                     }
                                     ?>
                                     <tbody>
-                                        <?php if (!$orders) : ?>
+                                        <?php if (!$paginatedOrders) : ?>
                                             <tr>
                                                 <td colspan="5" class="text-center">Pesanan tidak ditemukan.</td>
                                             </tr>
                                         <?php else : ?>
-                                            <?php foreach ($orders as $order) : ?>
+                                            <?php foreach ($paginatedOrders as $order) : ?>
                                                 <tr>
                                                     <td class="text-bold-500"><?= ($order->full_name) ? $order->full_name : $order->username ?></td>
                                                     <td>Rp<?= number_format($order->total_harga, '0', '.', ',') ?></td>
@@ -157,12 +166,18 @@
                                         <tr>
                                             <td colspan="6">
                                                 <nav aria-label="Page navigation">
-                                                    <ul class="pagination d-flex justify-content-end align-items-center mb-0">
-                                                        <li class="page-item"><a class="page-link" href="#">&LeftTeeArrow;</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">&RightTeeArrow;</a></li>
+                                                    <ul class="pagination d-flex justify-content-end">
+                                                        <li class="page-item<?= $page <= 1 ? ' disabled' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $page - 1 ?>">&LeftTeeArrow;</a>
+                                                        </li>
+                                                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                                            <li class="page-item<?= $i == $page ? ' active' : '' ?>">
+                                                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                            </li>
+                                                        <?php endfor; ?>
+                                                        <li class="page-item<?= $page >= $totalPages ? ' disabled' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $page + 1 ?>">&RightTeeArrow;</a>
+                                                        </li>
                                                     </ul>
                                                 </nav>
                                             </td>

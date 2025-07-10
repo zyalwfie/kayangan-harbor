@@ -60,7 +60,7 @@ class OrderController extends BaseController
             $orders->where('id_pengguna', user()->id);
         }
         $orders->orderBy('created_at', 'desc');
-        $ordersArray = $orders->paginate(5);
+        $ordersArray = $orders->findAll();
 
         $orders = array_map(function ($item) {
             return (object) $item;

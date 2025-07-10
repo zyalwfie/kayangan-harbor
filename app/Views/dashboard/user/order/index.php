@@ -17,6 +17,15 @@
                         <div class="card-header d-flex justify-content-between align-items-center mb-3">
                             <h4>Pesanan</h4>
                         </div>
+                        <?php
+                        $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+                        $perPage = 5;
+                        $total = count($orders);
+                        $totalPages = (int) ceil($total / $perPage);
+                        $start = ($page - 1) * $perPage;
+                        $paginatedOrders = array_slice($orders, $start, $perPage);
+                        $index = $start + 1;
+                        ?>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <?php if (session()->has('success')) : ?>
@@ -66,60 +75,72 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($orders as $order) : ?>
+                                        <?php if (!$paginatedOrders) : ?>
                                             <tr>
-                                                <td class="text-bold-500"><?= ($order->full_name) ? $order->full_name : $order->username ?></td>
-                                                <td>Rp<?= number_format($order->total_harga, '0', '.', ',') ?></td>
-                                                <td class="text-bold-500"><?= $order->jadwal_masuk ?></td>
-                                                <td class="text-bold-500">
-                                                    <?php if ($order->status_tiket === 'tertunda') : ?>
-                                                        <span class="badge badge-warning text-capitalize"><?= $order->status_tiket ?></span>
-                                                    <?php elseif ($order->status_tiket === 'kadaluarsa') : ?>
-                                                        <span class="badge badge-secondary text-capitalize"><?= $order->status_tiket ?></span>
-                                                    <?php else : ?>
-                                                        <span class="badge badge-info text-capitalize"><?= $order->status_tiket ?></span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td class="text-bold-500">
-                                                    <?php if ($order->status_pembayaran === 'tertunda') : ?>
-                                                        <span class="badge badge-warning text-capitalize"><?= $order->status_pembayaran ?></span>
-                                                    <?php elseif ($order->status_pembayaran === 'berhasil') : ?>
-                                                        <span class="badge badge-success text-capitalize"><?= $order->status_pembayaran ?></span>
-                                                    <?php else : ?>
-                                                        <span class="badge badge-danger text-capitalize"><?= $order->status_pembayaran ?></span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center justify-content-end gap-1">
-                                                        <button type="button" class="btn btn-outline-primary btn-lihat-order"
-                                                            data-bs-toggle="modal" data-bs-target="#detailModal"
-                                                            data-bukti-pembayaran="<?= $order->bukti_pembayaran ?>"
-                                                            data-pelabuhan_asal="<?= htmlspecialchars($order->pelabuhan_asal) ?>"
-                                                            data-pelabuhan_tujuan="<?= htmlspecialchars($order->pelabuhan_tujuan) ?>"
-                                                            data-nama_pemesan="<?= htmlspecialchars(($order->full_name) ? $order->full_name : $order->username) ?>"
-                                                            data-jumlah_penumpang="<?= htmlspecialchars($order->jumlah_penumpang) ?>"
-                                                            data-total_harga="<?= number_format($order->total_harga, '0', '.', ',') ?>"
-                                                            data-jadwal_masuk="<?= htmlspecialchars($order->jadwal_masuk) ?>"
-                                                            data-jenis="<?= $order->jenis ?>"
-                                                            data-golongan="<?= $order->golongan ?>"
-                                                            data-deskripsi_golongan_kendaraan="<?= $order->deskripsi_golongan_kendaraan ?>"
-                                                            data-status_tiket="<?= $order->status_tiket ?>"
-                                                            data-order_id="<?= $order->id ?>">Lihat</button>
-                                                    </div>
-                                                </td>
+                                                <td colspan="5" class="text-center">Pesanan tidak ditemukan.</td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <?php foreach ($paginatedOrders as $order) : ?>
+                                                <tr>
+                                                    <td class="text-bold-500"><?= ($order->full_name) ? $order->full_name : $order->username ?></td>
+                                                    <td>Rp<?= number_format($order->total_harga, '0', '.', ',') ?></td>
+                                                    <td class="text-bold-500"><?= $order->jadwal_masuk ?></td>
+                                                    <td class="text-bold-500">
+                                                        <?php if ($order->status_tiket === 'tertunda') : ?>
+                                                            <span class="badge badge-warning text-capitalize"><?= $order->status_tiket ?></span>
+                                                        <?php elseif ($order->status_tiket === 'kadaluarsa') : ?>
+                                                            <span class="badge badge-secondary text-capitalize"><?= $order->status_tiket ?></span>
+                                                        <?php else : ?>
+                                                            <span class="badge badge-info text-capitalize"><?= $order->status_tiket ?></span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td class="text-bold-500">
+                                                        <?php if ($order->status_pembayaran === 'tertunda') : ?>
+                                                            <span class="badge badge-warning text-capitalize"><?= $order->status_pembayaran ?></span>
+                                                        <?php elseif ($order->status_pembayaran === 'berhasil') : ?>
+                                                            <span class="badge badge-success text-capitalize"><?= $order->status_pembayaran ?></span>
+                                                        <?php else : ?>
+                                                            <span class="badge badge-danger text-capitalize"><?= $order->status_pembayaran ?></span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center justify-content-end gap-1">
+                                                            <button type="button" class="btn btn-outline-primary btn-lihat-order"
+                                                                data-bs-toggle="modal" data-bs-target="#detailModal"
+                                                                data-bukti-pembayaran="<?= $order->bukti_pembayaran ?>"
+                                                                data-pelabuhan_asal="<?= htmlspecialchars($order->pelabuhan_asal) ?>"
+                                                                data-pelabuhan_tujuan="<?= htmlspecialchars($order->pelabuhan_tujuan) ?>"
+                                                                data-nama_pemesan="<?= htmlspecialchars(($order->full_name) ? $order->full_name : $order->username) ?>"
+                                                                data-jumlah_penumpang="<?= htmlspecialchars($order->jumlah_penumpang) ?>"
+                                                                data-total_harga="<?= number_format($order->total_harga, '0', '.', ',') ?>"
+                                                                data-jadwal_masuk="<?= htmlspecialchars($order->jadwal_masuk) ?>"
+                                                                data-jenis="<?= $order->jenis ?>"
+                                                                data-golongan="<?= $order->golongan ?>"
+                                                                data-deskripsi_golongan_kendaraan="<?= $order->deskripsi_golongan_kendaraan ?>"
+                                                                data-status_tiket="<?= $order->status_tiket ?>"
+                                                                data-order_id="<?= $order->id ?>">Lihat</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="6">
                                                 <nav aria-label="Page navigation">
-                                                    <ul class="pagination d-flex justify-content-end align-items-center">
-                                                        <li class="page-item"><a class="page-link" href="#">&LeftTeeArrow;</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">&RightTeeArrow;</a></li>
+                                                    <ul class="pagination d-flex justify-content-end">
+                                                        <li class="page-item<?= $page <= 1 ? ' disabled' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $page - 1 ?>">&LeftTeeArrow;</a>
+                                                        </li>
+                                                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                                            <li class="page-item<?= $i == $page ? ' active' : '' ?>">
+                                                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                            </li>
+                                                        <?php endfor; ?>
+                                                        <li class="page-item<?= $page >= $totalPages ? ' disabled' : '' ?>">
+                                                            <a class="page-link" href="?page=<?= $page + 1 ?>">&RightTeeArrow;</a>
+                                                        </li>
                                                     </ul>
                                                 </nav>
                                             </td>
