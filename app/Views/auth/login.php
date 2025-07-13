@@ -40,9 +40,12 @@ Kayangan Harbor | Masuk
 
             <div class="form-group position-relative has-icon-left mb-2">
                 <input type="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>"
-                    placeholder="Masukkan sandi" name="password">
+                    placeholder="Masukkan sandi" id="password" name="password">
                 <div class="form-control-icon">
                     <i class="bi bi-lock"></i>
+                </div>
+                <div id="showPassword" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); display: flex; align-items: center; cursor: pointer;">
+                    <i class="bi bi-eye-fill"></i>
                 </div>
             </div>
 
@@ -57,17 +60,17 @@ Kayangan Harbor | Masuk
                 <?php endif; ?>
 
                 <?php if ($config->activeResetter) : ?>
-                    <small><a class="font-bold m-0 text-warning" href="<?= url_to('forgot') ?>">Lupa sandi?</a></small>
+                    <small><a class="font-bold m-0" style="color: #F564A9" href="<?= url_to('forgot') ?>">Lupa sandi?</a></small>
                 <?php endif; ?>
             </div>
 
-            <button class="btn btn-warning btn-block shadow-lg" type="submit">Masuk</button>
+            <button class="btn btn-block shadow-lg" style="background-color: #F564A9; color: white;" type="submit">Masuk</button>
             <?= form_close() ?>
 
             <?php if ($config->allowRegistration) : ?>
                 <div class="text-center mt-4 text-lg fs-4">
                     <p class="text-gray-600 m-0">Belum punya akun? <a href="<?= url_to('register') ?>"
-                            class="font-bold text-warning">Daftar di sini</a>.
+                            class="font-bold" style="color: #F564A9">Daftar di sini</a>.
                     </p>
                 </div>
             <?php endif; ?>
@@ -78,4 +81,21 @@ Kayangan Harbor | Masuk
         </div>
     </div>
 </div>
+<?= $this->endSection(); ?>
+
+<?= $this->section('foot_js'); ?>
+<script>
+    const showPassword = document.querySelector('#showPassword');
+    const password = document.querySelector('#password');
+    let isPassword = true;
+
+    showPassword.addEventListener('click', function() {
+        isPassword = !isPassword;
+        password.type = isPassword ? 'password' : 'text';
+
+        showPassword.innerHTML = isPassword ?
+            '<i class="bi bi-eye-fill"></i>' :
+            '<i class="bi bi-eye-slash-fill"></i>';
+    });
+</script>
 <?= $this->endSection(); ?>

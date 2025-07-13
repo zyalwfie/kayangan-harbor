@@ -77,13 +77,13 @@
                             </li>
                         <?php endif; ?>
                         <li>
-                            <button type="button" class="btn btn-outline-warning px-3" data-toggle="modal" data-target="#confirmModal">
+                            <button type="button" class="btn btn-outline-danger px-3" data-toggle="modal" data-target="#confirmModal">
                                 Keluar
                             </button>
                         </li>
                     <?php else : ?>
                         <li>
-                            <a href="<?= url_to('login') ?>" class="btn btn-outline-warning px-3 py-1 text-white">
+                            <a href="<?= url_to('login') ?>" class="btn btn-outline-primary px-3 py-1 text-white">
                                 Masuk
                             </a>
                         </li>

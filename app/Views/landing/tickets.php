@@ -99,7 +99,6 @@
 
         <?php
         $search = $_GET['q'] ?? '';
-        // $date = $_GET['date'] ?? '';
         $filteredTicktes = $tickets;
 
         if ($search) {
@@ -130,12 +129,6 @@
             <?php endif; ?>
             <div class="col-12 d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-end mb-4">
                 <form method="get" class="d-flex align-items-center gap-2">
-                    <!-- <div class="form-group my-0 w-100 d-flex gap-2 align-items-center">
-                        <div class="mr-2">
-                            <input type="date" class="form-control" id="search" name="date" placeholder="Cari tiket di sini" value="<?= isset($_GET['date']) ? esc($_GET['date']) : '' ?>">
-                        </div>
-                        <button class="btn btn-warning"><i class="bi bi-search"></i></button>
-                    </div> -->
                     <div class="form-group my-0 w-100 d-flex gap-2 align-items-center mr-2">
                         <div class="mr-2">
                             <input type="text" class="form-control" id="search" name="q" placeholder="Cari tiket di sini" value="<?= isset($_GET['q']) ? esc($_GET['q']) : '' ?>">
@@ -214,7 +207,9 @@
                                     </li>
                                     <li>
                                         <?php if (logged_in()) : ?>
-                                            <button class="btn btn-outline-warning w-100 showOrderModalBtn" type="button" data-toggle="modal" data-target="#orderModal" data-id_tiket="<?= $ticket->id ?>" data-pelabuhan_asal="<?= $ticket->pelabuhan_asal ?>" data-pelabuhan_tujuan="<?= $ticket->pelabuhan_tujuan ?>" data-harga="<?= $ticket->harga ?>" id="<?= 'show-' . $ticket->id ?>">Pesan Sekarang</button>
+                                            <?php if (in_groups('user')) : ?>
+                                                <button class="btn btn-outline-warning w-100 showOrderModalBtn" type="button" data-toggle="modal" data-target="#orderModal" data-id_tiket="<?= $ticket->id ?>" data-pelabuhan_asal="<?= $ticket->pelabuhan_asal ?>" data-pelabuhan_tujuan="<?= $ticket->pelabuhan_tujuan ?>" data-harga="<?= $ticket->harga ?>" id="<?= 'show-' . $ticket->id ?>">Pesan Sekarang</button>
+                                            <?php endif; ?>
                                         <?php else : ?>
                                             <a href="<?= url_to('login') ?>" class="btn btn-outline-warning w-100">Masuk Untuk Pesan</a>
                                         <?php endif; ?>

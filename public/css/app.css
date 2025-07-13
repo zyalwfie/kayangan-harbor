@@ -17,7 +17,7 @@
 }
 
 .alert-primary {
-    background-color: #f8b600;
+    background-color: #F564A9;
     color: #fff
 }
 
@@ -429,14 +429,14 @@
 }
 
 .pricing .card-highlighted {
-    background-color: #f8b600;
+    background-color: #F564A9;
     padding-top: 20px;
     padding-bottom: 20px
 }
 
 .pricing .card-highlighted .card-body,
 .pricing .card-highlighted .card-header {
-    background-color: #f8b600;
+    background-color: #F564A9;
     color: #fff
 }
 
@@ -450,7 +450,7 @@
 }
 
 .pricing .card-highlighted .card-footer {
-    background-color: #f8b600
+    background-color: #F564A9
 }
 
 .pricing .card-highlighted .card-title {
@@ -559,9 +559,9 @@
 
 .form-group.with-title .form-control:focus~label,
 .form-group.with-title dataTable-input:focus~label {
-    border-left: 1px solid #f8b600;
-    border-top: 1px solid #f8b600;
-    border-right: 1px solid #f8b600
+    border-left: 1px solid #F564A9;
+    border-top: 1px solid #F564A9;
+    border-right: 1px solid #F564A9
 }
 
 .form-group[class*=has-icon-].has-icon-left .form-control {
@@ -630,8 +630,8 @@
 }
 
 .form-check .form-check-input.form-check-primary {
-    background-color: #f8b600;
-    border-color: #f8b600
+    background-color: #F564A9;
+    border-color: #F564A9
 }
 
 .form-check .form-check-input.form-check-primary:not(:checked) {
@@ -794,8 +794,8 @@
 }
 
 .form-check.form-check-primary .form-check-input {
-    background-color: #f8b600;
-    border-color: #f8b600
+    background-color: #F564A9;
+    border-color: #F564A9
 }
 
 .form-check.form-check-secondary .form-check-input {
@@ -1008,7 +1008,7 @@
 }
 
 .sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
-    background-color: #f8b600
+    background-color: #F564A9
 }
 
 .sidebar-wrapper .menu .sidebar-item.active .sidebar-link span {
@@ -1042,7 +1042,7 @@
 }
 
 .sidebar-wrapper .menu .submenu .submenu-item.active>a {
-    color: #f8b600;
+    color: #F564A9;
     font-weight: 700
 }
 
@@ -1088,7 +1088,7 @@
 .nav-tabs .nav-link.active {
     border: none;
     position: relative;
-    color: #f8b600
+    color: #F564A9
 }
 
 .nav-tabs .nav-link.active:after {
@@ -1097,7 +1097,7 @@
     position: absolute;
     bottom: 0;
     height: 2px;
-    background-color: #f8b600;
+    background-color: #F564A9;
     left: 0;
     box-shadow: 0 2px 5px rgba(67, 94, 190, .5)
 }
@@ -1155,8 +1155,8 @@
 }
 
 .pagination.pagination-primary .page-item.active .page-link {
-    background-color: #f8b600;
-    border-color: #f8b600;
+    background-color: #F564A9;
+    border-color: #F564A9;
     box-shadow: 0 2px 5px rgba(67, 94, 190, .3)
 }
 
@@ -1268,7 +1268,7 @@
 }
 
 .progress.progress-primary .progress-bar {
-    background-color: #f8b600;
+    background-color: #F564A9;
     border-radius: .25rem
 }
 

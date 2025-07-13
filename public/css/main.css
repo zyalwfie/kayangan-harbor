@@ -1,11 +1,11 @@
 ::-moz-selection {
   /* Code for Firefox */
-  background-color: #f8b600;
+  background-color: #F564A9;
   color: #fff;
 }
 
 ::selection {
-  background-color: #f8b600;
+  background-color: #F564A9;
   color: #fff;
 }
 
@@ -796,7 +796,7 @@ th {
 
 .generic-banner {
   margin-top: 60px;
-  background-color: #f8b600;
+  background-color: #F564A9;
   text-align: center;
 }
 
@@ -897,7 +897,7 @@ sup,
 sub,
 u,
 del {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 h1 {
@@ -1046,25 +1046,25 @@ h6 {
 
 .genric-btn.primary {
   color: #fff;
-  background: #f8b600;
+  background: #F564A9;
   border: 1px solid transparent;
 }
 
 .genric-btn.primary:hover {
-  color: #f8b600;
-  border: 1px solid #f8b600;
+  color: #F564A9;
+  border: 1px solid #F564A9;
   background: #fff;
 }
 
 .genric-btn.primary-border {
-  color: #f8b600;
-  border: 1px solid #f8b600;
+  color: #F564A9;
+  border: 1px solid #F564A9;
   background: #fff;
 }
 
 .genric-btn.primary-border:hover {
   color: #fff;
-  background: #f8b600;
+  background: #F564A9;
   border: 1px solid transparent;
 }
 
@@ -1200,7 +1200,7 @@ h6 {
 .generic-blockquote {
   padding: 30px 50px 30px 30px;
   background: #fff;
-  border-left: 2px solid #f8b600;
+  border-left: 2px solid #F564A9;
 }
 
 @media (max-width: 991px) {
@@ -1340,7 +1340,7 @@ h6 {
   position: absolute;
   width: 14px;
   height: 14px;
-  border: 3px solid #f8b600;
+  border: 3px solid #F564A9;
   background: #fff;
   top: 4px;
   left: 0;
@@ -1353,7 +1353,7 @@ h6 {
 
 .ordered-list li {
   list-style-type: decimal-leading-zero;
-  color: #f8b600;
+  color: #F564A9;
   font-weight: 500;
   line-height: 1.82em !important;
 }
@@ -1366,7 +1366,7 @@ h6 {
 .ordered-list-alpha li {
   margin-left: 30px;
   list-style-type: lower-alpha;
-  color: #f8b600;
+  color: #F564A9;
   font-weight: 500;
   line-height: 1.82em !important;
 }
@@ -1379,7 +1379,7 @@ h6 {
 .ordered-list-roman li {
   margin-left: 30px;
   list-style-type: lower-roman;
-  color: #f8b600;
+  color: #F564A9;
   font-weight: 500;
   line-height: 1.82em !important;
 }
@@ -1451,7 +1451,7 @@ h6 {
 
 .single-input-primary:focus {
   outline: none;
-  border: 1px solid #f8b600;
+  border: 1px solid #F564A9;
 }
 
 .single-input-accent {
@@ -1512,7 +1512,7 @@ h6 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #f8b600;
+  background: #F564A9;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
@@ -1599,7 +1599,7 @@ h6 {
 }
 
 .primary-switch input:checked+label:before {
-  background: #f8b600;
+  background: #F564A9;
 }
 
 .confirm-switch {
@@ -1948,12 +1948,12 @@ h6 {
 }
 
 .default-select .nice-select .list .option.selected {
-  color: #f8b600;
+  color: #F564A9;
   background: transparent;
 }
 
 .default-select .nice-select .list .option:hover {
-  color: #f8b600;
+  color: #F564A9;
   background: transparent;
 }
 
@@ -2009,12 +2009,12 @@ h6 {
 }
 
 .form-select .nice-select .list .option.selected {
-  color: #f8b600;
+  color: #F564A9;
   background: transparent;
 }
 
 .form-select .nice-select .list .option:hover {
-  color: #f8b600;
+  color: #F564A9;
   background: transparent;
 }
 
@@ -2047,7 +2047,7 @@ h6 {
 }
 
 .header-top a:hover {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .header-top ul li {
@@ -2079,11 +2079,11 @@ h6 {
 }
 
 .header-top .header-top-right .header-social a:hover {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .top-head-btn {
-  background: #f8b600;
+  background: #F564A9;
   padding: 9px 26px;
 }
 
@@ -2197,7 +2197,7 @@ h6 {
 }
 
 .nav-menu li:hover>a {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .nav-menu>li {
@@ -2225,7 +2225,7 @@ h6 {
 }
 
 .nav-menu ul li:hover>a {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .nav-menu ul ul {
@@ -2318,7 +2318,7 @@ h6 {
 }
 
 #mobile-nav ul .menu-has-children i.fa-chevron-up {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 #mobile-nav ul .menu-has-children li a {
@@ -2326,7 +2326,7 @@ h6 {
 }
 
 #mobile-nav ul .menu-item-active {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 #mobile-body-overly {
@@ -2373,7 +2373,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .primary-btn {
-  background: #f8b600;
+  background: #F564A9;
   line-height: 42px;
   padding-left: 30px;
   padding-right: 30px;
@@ -2427,11 +2427,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .primary-btn.white:hover {
   background: #fff;
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .primary-btn.white:hover span {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .primary-btn.wh {
@@ -2532,7 +2532,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .banner-left .primary-btn {
-  background: #f8b600;
+  background: #F564A9;
 }
 
 .banner-left .primary-btn:hover {
@@ -2642,7 +2642,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-destination .desc .price-btn {
-  background: #f8b600;
+  background: #F564A9;
   text-align: center;
   color: #222;
   padding: 6px 30px;
@@ -2706,7 +2706,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-other-issue:hover h4 {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .single-other-issue:hover .thumb img {
@@ -2748,7 +2748,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  background: #f8b600;
+  background: #F564A9;
 }
 
 .single-testimonial {
@@ -2781,7 +2781,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-testimonial:hover h4 {
-  color: #f8b600;
+  color: #F564A9;
   cursor: pointer;
 }
 
@@ -2827,7 +2827,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .home-about-area .home-about-left .primary-btn:hover {
-  background: #f8b600;
+  background: #F564A9;
 }
 
 @media (max-width: 991px) {
@@ -2881,7 +2881,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  background: #f8b600;
+  background: #F564A9;
 }
 
 .recent-blog-area .single-recent-blog-post .thumb {
@@ -2910,7 +2910,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .recent-blog-area .single-recent-blog-post .tags li:hover {
-  background-color: #f8b600;
+  background-color: #F564A9;
 }
 
 .recent-blog-area .single-recent-blog-post .tags li:hover a {
@@ -2932,7 +2932,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .recent-blog-area .single-recent-blog-post .title:hover {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .recent-blog-area .single-recent-blog-post .date {
@@ -3058,7 +3058,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  background: #f8b600;
+  background: #F564A9;
 }
 
 .single-carusel .thumb .overlay-bg {
@@ -3083,7 +3083,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-carusel .price-detials .price-btn {
-  background: #f8b600;
+  background: #F564A9;
   color: #222;
   font-weight: 200;
   font-size: 14px;
@@ -3155,7 +3155,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .destinations-area .single-destinations .details .price-btn {
-  background: #f8b600;
+  background: #F564A9;
   color: #222;
   font-weight: 600;
   padding: 5px 20px;
@@ -3279,8 +3279,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .contact-page-area .form-area .genric-btn:hover {
-  border: 1px solid #f8b600;
-  color: #f8b600 !important;
+  border: 1px solid #F564A9;
+  color: #F564A9 !important;
 }
 
 @media (max-width: 991px) {
@@ -3302,7 +3302,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .contact-page-area .address-wrap .single-contact-address .lnr {
   font-size: 30px;
   font-weight: 500;
-  color: #f8b600;
+  color: #F564A9;
   margin-right: 30px;
 }
 
@@ -3323,11 +3323,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-area .footer-nav li a:hover {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .footer-area .primary-btn {
-  background-color: #f8b600;
+  background-color: #F564A9;
   line-height: 42px;
   padding-left: 30px;
   padding-right: 60px;
@@ -3363,7 +3363,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-area .primary-btn:hover {
-  background-color: #f8b600;
+  background-color: #F564A9;
   box-shadow: none;
   color: #fff;
 }
@@ -3384,11 +3384,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .footer-area .primary-btn.white:hover {
   background: #fff;
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .footer-area .primary-btn.white:hover span {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .footer-area h6 {
@@ -3401,7 +3401,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .copy-right-text i,
 .copy-right-text a {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .instafeed {
@@ -3435,7 +3435,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-social a:hover i {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .footer-social i {
@@ -3469,7 +3469,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget .bb-btn {
-  background-color: #f8b600;
+  background-color: #F564A9;
   color: #fff;
   font-weight: 300;
   border-radius: 0;
@@ -3503,12 +3503,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .single-footer-widget ::-moz-selection {
   /* Code for Firefox */
-  background-color: #f8b600;
+  background-color: #F564A9;
   color: #777777;
 }
 
 .single-footer-widget ::selection {
-  background-color: #f8b600;
+  background-color: #F564A9;
   color: #777777;
 }
 
@@ -3567,7 +3567,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget ul li a:hover {
-  color: #f8b600;
+  color: #F564A9;
 }
 
 .footer-bottom {
@@ -3578,5 +3578,5 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .footer-text a,
 .footer-text i {
-  color: #f8b600;
+  color: #F564A9;
 }
