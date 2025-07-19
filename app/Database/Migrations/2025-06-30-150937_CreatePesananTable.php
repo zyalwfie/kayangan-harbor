@@ -29,7 +29,7 @@ class CreatePesananTable extends Migration
             ],
             'nama_pemesan' => [
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 50,
             ],
             'jumlah_penumpang' => [
                 'type' => 'int',
@@ -45,11 +45,11 @@ class CreatePesananTable extends Migration
             ],
             'pelabuhan_tujuan' => [
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 30,
             ],
             'jadwal_masuk' => [
                 'type' => 'varchar',
-                'constraint' => 255
+                'constraint' => 30
             ],
             'status_tiket' => [
                 'type' => 'ENUM',

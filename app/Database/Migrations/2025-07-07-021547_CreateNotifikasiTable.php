@@ -27,11 +27,11 @@ class CreateNotifikasiTable extends Migration
             ],
             'kepala_notifikasi' => [
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 15,
             ],
             'isi_notifikasi' => [
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 30,
             ],
             'dibaca' => [
                 'type' => 'tinyint',
