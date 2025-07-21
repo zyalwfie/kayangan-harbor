@@ -180,7 +180,19 @@
                             <div class="details">
                                 <h4>Tujuan <?= $ticket->pelabuhan_tujuan ?></h4>
                                 <p>Jenis pengguna jasa, <b><?= $ticket->jenisPenggunaJasa ?></b></p>
-                                <button type="button" class="btn btn-secondary mb-2" disabled data-toggle="tooltip" data-placement="right" title="<?= $ticket->golonganKendaraan ? $ticket->deskripsiGolonganKendaraan : 'Tidak ada golongan kendaraan' ?>"><b><?= $ticket->golonganKendaraan ? $ticket->golonganKendaraan : 'Golongan 0' ?></b></button>
+                                <div class="d-flex">
+
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <button type="button" class="btn btn-secondary mb-2" disabled data-toggle="tooltip" data-placement="right" title="<?= $ticket->golonganKendaraan ? $ticket->deskripsiGolonganKendaraan : 'Tidak ada golongan kendaraan' ?>">
+                                        <b><?= $ticket->golonganKendaraan ? $ticket->golonganKendaraan : 'Golongan 0' ?></b>
+                                    </button>
+                                    <?php if ($ticket->golonganKendaraan) : ?>
+                                        <small><?= $ticket->deskripsiGolonganKendaraan ?></small>
+                                    <?php else : ?>
+                                        <small>Pejalan kaki</small>
+                                    <?php endif; ?>
+                                </div>
                                 <ul class="package-list">
                                     <li class="d-flex justify-content-between align-items-center">
                                         <span>Durasi</span>
